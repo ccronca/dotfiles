@@ -1,0 +1,21 @@
+[init]
+  	defaultBranch = main
+[color]
+	ui = auto
+[commit]
+	gpgSign = true
+[core]
+	excludesFile = ~/.gitignore
+	editor = vim
+[alias]
+	ignored = !git ls-files -v | grep "^[[:lower:]]"
+	amend = commit -S --ammend
+	cm = commit -S -m
+	commit = commit -S 
+	cherry-pick = cherry-pick -S
+[rebase]
+	autosquash = true
+[include]
+	path = ~/.gitconfig.local
+[diff]
+	colorMoved = zebra
