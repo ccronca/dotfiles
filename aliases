@@ -1,0 +1,13 @@
+alias zshconfig="$EDITOR ~/.zshrc"
+alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
+
+alias cachi2='podman run --rm -ti -v "$PWD:$PWD:z" -w "$PWD" quay.io/konflux-ci/cachi2:latest'
+
+# Pretty print the path
+alias path='echo $PATH | tr -s ":" "\n"'
+
+
+# Include custom aliases
+if [[ -f ~/.aliases.local ]]; then
+  source ~/.aliases.local
+fi
