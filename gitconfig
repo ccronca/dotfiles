@@ -9,7 +9,7 @@
 	editor = vim
 [alias]
 	ignored = !git ls-files -v | grep "^[[:lower:]]"
-	amend = commit -S --ammend
+	amend = commit -S --amend
 	cm = commit -S -m
 	commit = commit -S 
 	cherry-pick = cherry-pick -S
