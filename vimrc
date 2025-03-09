@@ -77,3 +77,13 @@ augroup myvimrc
     au!
     au BufWritePost .vimrc,vimrc so $MYVIMRC
 augroup END
+
+" Ctags search
+set tags=./tags;$HOME
+
+" Set f5 to generate tags 
+nnoremap <f5> :!ctags -R<CR>
+
+" Auto-update tags for python
+autocmd BufWritePost *.py silent! !ctags -R .
+

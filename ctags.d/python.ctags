@@ -1,0 +1,6 @@
+--langmap=Python:.py
+--languages=Python
+--regex-Python=/^class[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)/\1/c,class/
+--regex-Python=/^def[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)/\1/f,function/
+--regex-Python=/^[ \t]*([a-zA-Z_][a-zA-Z0-9_]*[ \t]*=[^=].*)/\1/v,variable/ 
+
