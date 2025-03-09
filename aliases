@@ -1,5 +1,6 @@
 alias zshconfig="$EDITOR ~/.zshrc"
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
+alias vimconfig="$EDITOR ~/.vimrc"
 
 alias cachi2='podman run --rm -ti -v "$PWD:$PWD:z" -w "$PWD" quay.io/konflux-ci/cachi2:latest'
 
