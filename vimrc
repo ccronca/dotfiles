@@ -56,3 +56,24 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" Windows movement
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
+" Change the directory view in netrw
+let g:netrw_liststyle = 4
+
+" Open files in a new tab
+let g:netrw_browse_split = 3
+
+" Set the width of the directory explorer
+let g:netrw_winsize = 25
+
+" Auto-reload vim configuration
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,vimrc so $MYVIMRC
+augroup END
