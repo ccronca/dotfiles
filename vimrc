@@ -19,6 +19,9 @@ set expandtab             " use spaces instead of tabs
 set smarttab              " use tabs at the start of a line, spaces elsewhere
 set nowrap                " don't wrap text
 
+" Remap <Leader> key
+let mapleader=","
+
 " Wrap text at 72 characters while writing a Git commit message
 autocmd FileType gitcommit setlocal textwidth=72
 
@@ -90,9 +93,13 @@ autocmd BufWritePost *.py silent! !ctags -R .
 " ctrlp configuration
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-
 let g:ctrlp_working_path_mode = 'ra'
+nnoremap <leader>. :CtrlPTag<cr>
 
 " Ignore files in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+" Tagbar configuration
+nmap <F8> :TagbarToggle<CR>
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
 

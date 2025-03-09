@@ -33,6 +33,7 @@ PLUGIN_DIR="$HOME/.vim/pack/plugins/start"
 
 declare -A PLUGINS=(
     ["ctrlp.vim"]="https://github.com/ctrlpvim/ctrlp.vim.git"
+    ["tagbar"]="https://github.com/preservim/tagbar.git"
 )
 
 mkdir -p "$PLUGIN_DIR"
