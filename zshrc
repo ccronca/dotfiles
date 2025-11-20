@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin:$PATH:`go env GOPATH`/bin:$HOME/.local/bin/
+export PATH=$HOME/bin:${KREW_ROOT:-$HOME/.krew}/bin:$PATH:`go env GOPATH`/bin:$HOME/.npm-global/bin:$HOME/.local/bin/
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -92,3 +92,11 @@ function mcd() {
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
+[[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
+
+export GVM_DEBUG=${GVM_DEBUG:-0}
+
+# https://github.com/anthropics/claude-code/issues/2407#issuecomment-3013345884
+claude() {
+  SHELL=/bin/bash command claude "$@"
+}
