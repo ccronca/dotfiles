@@ -1,0 +1,23 @@
+# Claude Code - Dotfiles .gitignore
+# Allowlist approach: ignore everything by default, then explicitly allow what we want to track
+
+# Ignore everything
+*
+
+# Allow specific files and directories
+!.gitignore
+!CLAUDE.md
+!settings.json
+!statusline-command.sh
+
+# Allow agents directory and its contents
+!agents/
+!agents/*
+
+# Allow commands directory and its contents
+!commands/
+!commands/*
+
+# Allow plugins directory and its contents (optional)
+!plugins/
+!plugins/*

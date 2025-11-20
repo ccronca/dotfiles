@@ -6,7 +6,7 @@
 
 dir=~/dotfiles                    
 olddir=~/dotfiles_old             
-files="vimrc tmux.conf gitignore zshrc aliases gitconfig bashrc bash_logout bash_profile ctags.d"    # list of files/folders to symlink in homedir
+files="vimrc tmux.conf gitignore zshrc aliases gitconfig bashrc bash_logout bash_profile ctags.d claude"    # list of files/folders to symlink in homedir
 
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
