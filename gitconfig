@@ -32,3 +32,5 @@
 	added = yellow
 	changed = green
 	untracked = cyan
+[includeIf "gitdir:~/repositories/github/"]
+    path = ~/.gitconfig-github
