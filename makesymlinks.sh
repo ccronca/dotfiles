@@ -1,12 +1,8 @@
 #!/bin/bash
-############################
-# This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
-# and install vim plugins
-############################
 
-dir=~/dotfiles                    
-olddir=~/dotfiles_old             
-files="vimrc tmux.conf gitignore zshrc aliases gitconfig bashrc bash_logout bash_profile ctags.d claude"    # list of files/folders to symlink in homedir
+dir=~/dotfiles
+olddir=~/dotfiles_old
+files="vimrc tmux.conf gitignore zshrc aliases gitconfig bashrc bash_logout bash_profile ctags.d mcp.json"
 
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
@@ -25,8 +21,8 @@ done
 
 DIRS=("$HOME/.vim/backups" "$HOME/.vim/swaps" "$HOME/.vim/undo")
 
-for dir in "${DIRS[@]}"; do
-    mkdir -p "$dir"
+for vim_dir in "${DIRS[@]}"; do
+    mkdir -p "$vim_dir"
 done
 
 PLUGIN_DIR="$HOME/.vim/pack/plugins/start"
@@ -53,3 +49,7 @@ for plugin in "${!PLUGINS[@]}"; do
 done
 
 echo "Vim plugins management complete!"
+
+echo ""
+echo "Setting up Claude configuration..."
+bash "$dir/setup_claude_config.sh"
