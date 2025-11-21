@@ -2,7 +2,7 @@
 
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files="vimrc tmux.conf gitignore zshrc aliases gitconfig bashrc bash_logout bash_profile ctags.d mcp.json"
+files="vimrc tmux.conf gitignore zshrc aliases gitconfig gitconfig-github bashrc bash_logout bash_profile ctags.d mcp.json"
 
 echo "Creating $olddir for backup of any existing dotfiles in ~"
 mkdir -p $olddir
