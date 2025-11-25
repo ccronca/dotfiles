@@ -18,6 +18,10 @@
 !commands/
 !commands/*
 
+# Allow hooks directory and its contents
+!hooks/
+!hooks/*
+
 # Allow plugins directory and its contents (optional)
 !plugins/
 !plugins/*

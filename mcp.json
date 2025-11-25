@@ -1,17 +1,6 @@
 {
+  "_comment": "Only one vault can be configured at a time due to a bug in mcp-obsidian where all instances connect to port 27124 regardless of OBSIDIAN_PORT setting. See: https://github.com/MarkusPfundstein/mcp-obsidian/pull/89",
   "mcpServers": {
-    "mcp-obsidian-secondbrain": {
-      "type": "stdio",
-      "command": "uvx",
-      "args": [
-        "mcp-obsidian"
-      ],
-      "env": {
-        "OBSIDIAN_API_KEY": "${OBSIDIAN_SECONDBRAIN_API_KEY}",
-        "OBSIDIAN_HOST": "127.0.0.1",
-        "OBSIDIAN_PORT": "27124"
-      }
-    },
     "mcp-obsidian-myjournal": {
       "type": "stdio",
       "command": "uvx",
@@ -21,19 +10,7 @@
       "env": {
         "OBSIDIAN_API_KEY": "${OBSIDIAN_MYJOURNAL_API_KEY}",
         "OBSIDIAN_HOST": "127.0.0.1",
-        "OBSIDIAN_PORT": "27124"
-      }
-    },
-    "mcp-obsidian-english": {
-      "type": "stdio",
-      "command": "uvx",
-      "args": [
-        "mcp-obsidian"
-      ],
-      "env": {
-        "OBSIDIAN_API_KEY": "${OBSIDIAN_ENGLISH_API_KEY}",
-        "OBSIDIAN_HOST": "127.0.0.1",
-        "OBSIDIAN_PORT": "27124"
+        "OBSIDIAN_PORT": "27122"
       }
     }
   }

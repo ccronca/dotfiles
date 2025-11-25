@@ -13,6 +13,7 @@ CONFIG_FILES=(
 CONFIG_DIRS=(
     "agents"
     "commands"
+    "hooks"
     "plugins"
 )
 

@@ -2,15 +2,73 @@
   "permissions": {
     "allow": [
       "Bash(git log:*)",
-      "Bash(git diff:*)"
+      "Bash(git diff:*)",
+      "Skill(Journaling)",
+      "Bash(jira issue view:*)",
+      "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_dir",
+      "mcp__mcp-obsidian-myjournal__obsidian_append_content",
+      "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_vault",
+      "mcp__mcp-obsidian-myjournal__obsidian_batch_get_file_contents"
     ],
     "ask": [
       "Bash(sudo:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/capture-events-simple.py --event-type SessionStart"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/capture-events-simple.py --event-type Stop"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/capture-events-simple.py --event-type SessionEnd"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/capture-events-simple.py --event-type UserPromptSubmit"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/capture-events-simple.py --event-type PreCompact"
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
     "type": "command",
     "command": "bash $HOME/.claude/statusline-command.sh"
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": false
 }

@@ -39,7 +39,7 @@ This script will:
 The Claude configuration is handled separately to preserve your local runtime data:
 
 * **Symlinked files**: CLAUDE.md, settings.json, statusline-command.sh, .gitignore
-* **Symlinked directories**: agents/, commands/, plugins/
+* **Symlinked directories**: agents/, commands/, hooks/, plugins/
 * **Local files preserved**: CLAUDE.local.md, history.jsonl, debug/, file-history/, session-env/
 
 To manually update Claude configuration only:
@@ -50,18 +50,20 @@ To manually update Claude configuration only:
 
 ## MCP Server Configuration
 
-The repository includes project-level MCP configuration in `.mcp.json` for three Obsidian servers. To use them:
+The repository includes project-level MCP configuration in `.mcp.json` for Obsidian vault integration.
+
+**Note:** Due to a bug in mcp-obsidian (see [PR #89](https://github.com/MarkusPfundstein/mcp-obsidian/pull/89)), only one vault can be configured at a time.
+
+To use the MCP server:
 
 1. Copy the example environment file:
    ```bash
    cp .env.example .env
    ```
 
-2. Edit `.env` and add your Obsidian API keys:
+2. Edit `.env` and add your Obsidian API key:
    ```bash
-   OBSIDIAN_SECONDBRAIN_API_KEY=your_actual_key
    OBSIDIAN_MYJOURNAL_API_KEY=your_actual_key
-   OBSIDIAN_ENGLISH_API_KEY=your_actual_key
    ```
 
 3. Source the environment variables before running Claude Code:
@@ -69,7 +71,7 @@ The repository includes project-level MCP configuration in `.mcp.json` for three
    source .env
    ```
 
-The MCP servers will be available when Claude Code is run from this directory.
+The MCP server will be available when Claude Code is run from this directory.
 
 ## Manual Setup
 
