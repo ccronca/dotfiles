@@ -90,6 +90,114 @@ Use the following format: `<type>(<scope>): <subject>`
 
 ---
 
+## Jira Issue Creation Guidelines
+
+When creating Jira issues using the `jira` CLI tool, follow these requirements:
+
+### Command Format Best Practices
+
+* **Always use:** `--no-input` flag to avoid interactive prompts
+* **Specify type:** Use `-t` to set issue type (Story, Task, Bug, etc.)
+* **Set project:** Use `-p` to specify the Jira project key
+* **Add labels:** Use `--label` for categorization
+* **Summary:** Use `-s` for the issue title
+* **Description:** Use `-b` for the issue body
+
+### Issue Description Format
+
+* **Markup Language:** Use Jira wiki markup, **NOT Markdown**
+  * Headers: `h2. Header Name` (not `## Header Name`)
+  * Bullet points: `* item` (not `- item`)
+  * Bold: `*text*` (not `**text**`)
+  * Code: `{{text}}` (not `` `text` ``)
+  * Code blocks: `{code:language}...{code}` (not ` ```language `)
+
+### Standard Issue Structure
+
+For Story/User Story issues, use this structure:
+
+```
+h2. User Story
+
+As a [role], I want [feature], so that [benefit].
+
+h2. Acceptance Criteria
+
+* First criterion
+* Second criterion
+* Third criterion
+
+h2. Benefits
+
+Brief list of key benefits (one line or bullet points).
+```
+
+For Task issues, use this structure:
+
+```
+h2. Description
+
+Clear description of what needs to be done and why.
+
+h2. Tasks
+
+* Task 1
+* Task 2
+* Task 3
+
+h2. Acceptance Criteria
+
+* Criterion 1
+* Criterion 2
+```
+
+### File-Based Approach for Long Descriptions
+
+**IMPORTANT:** For long or complex issue descriptions, use a file-based approach to avoid issues with heredocs and command-line length limits.
+
+**Recommended method:**
+
+1. Write the description to a temporary file
+2. Use `cat` to read the file content in the `-b` parameter
+3. Clean up the temporary file after creation
+
+**Example:**
+
+```bash
+# Write description to file
+cat > /tmp/jira_body.txt << 'EOF'
+h2. Description
+
+Your detailed description here...
+
+h2. Tasks
+
+* Task 1
+* Task 2
+EOF
+
+# Create issue using file content
+jira issue create --no-input \
+  -t "Task" \
+  -p "PROJECT" \
+  -s "Issue summary here" \
+  -b "$(cat /tmp/jira_body.txt)"
+
+# Clean up
+rm /tmp/jira_body.txt
+```
+
+### General Guidelines
+
+* Keep descriptions concise and professional
+* Focus on what and why, not how
+* Use B2-level English
+* No emojis
+* Include relevant context and links
+* Set appropriate priority and labels
+
+---
+
 ## Work-Specific Guidelines
 
 For work-specific or project-specific configuration, see:
