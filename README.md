@@ -73,6 +73,38 @@ To use the MCP server:
 
 The MCP server will be available when Claude Code is run from this directory.
 
+## Google Calendar Integration
+
+The repository includes a `/calendar-journal` command for generating meeting summaries from Google Calendar.
+
+### Setup gcalcli
+
+Install and configure gcalcli following the [official documentation](https://github.com/insanum/gcalcli).
+
+The first run will prompt for OAuth authorization to access your Google Calendar.
+
+### Using the Calendar Journal Command
+
+Generate meeting summaries and save them to your Obsidian vault:
+
+```bash
+# Today's meetings
+/calendar-journal
+
+# This week's meetings
+/calendar-journal week
+
+# Specific date
+/calendar-journal 2025-11-25
+```
+
+The command will:
+- Fetch events from Google Calendar using gcalcli
+- Analyze meeting patterns and time distribution
+- Generate a summary with statistics and observations
+- Save to `Journal/Calendar/YYYY-MM-DD.md` in Obsidian vault
+- Add appropriate tags for searchability
+
 ## Manual Setup
 
 If you prefer to set up components individually, you can run scripts separately or manually symlink specific files.
