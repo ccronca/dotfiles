@@ -90,6 +90,49 @@ Use the following format: `<type>(<scope>): <subject>`
 
 ---
 
+## Python Virtual Environment Guidelines
+
+When executing Python commands (e.g., running tests, installing packages, executing scripts), follow these rules:
+
+### Automatic Virtual Environment Detection
+
+1. **Before running any Python command**, check if a `.venv` directory exists in the current project directory
+2. **If `.venv` exists:**
+   - Prefix the command with `source .venv/bin/activate &&`
+   - Example: `source .venv/bin/activate && pytest tests/`
+3. **If `.venv` does not exist:**
+   - Inform the user that no virtual environment was found
+   - Offer to create one by running `/setup-venv` command
+   - Wait for user approval before creating the venv
+
+### Creating Virtual Environments
+
+* Use the `/setup-venv` command to create and configure virtual environments
+* Virtual environments are created in `.venv` directory (already in `.gitignore`)
+* The setup command automatically:
+  * Creates the virtual environment
+  * Upgrades pip
+  * Installs dependencies from `requirements.txt`, `pyproject.toml`, or `setup.py`
+
+### Examples
+
+**Running tests with venv:**
+```bash
+source .venv/bin/activate && pytest tests/
+```
+
+**Installing packages with venv:**
+```bash
+source .venv/bin/activate && pip install requests
+```
+
+**Running Python scripts with venv:**
+```bash
+source .venv/bin/activate && python script.py
+```
+
+---
+
 ## Jira Issue Creation Guidelines
 
 When creating Jira issues using the `jira` CLI tool, follow these requirements:
