@@ -37,13 +37,18 @@ the **code-reviewer** agent
    - Security & input validation
    - Performance & efficiency
    - Test coverage and suggestions for missing tests
+   - Read code comments in the modified files, and make sure the changes in the pull request comply with any guidance in the comments
+   - Read the git blame and history of the code modified, to identify any bugs in light of that historical context
 
 5. Apply project guidelines from CLAUDE.md and associated docs (if applicable):
    - `coding-guidelines.md`
    - `review-guidelines.md`
    - `security.md`
 
-6. **Output your review** in a structured format:
+6. For each issue found in #4 and #5, launch a parallel Haiku agent that takes the PR and issue description, and returns a score to indicate the agent's level of confidence for whether the issue is real or false positive. To do that, the agent should score each issue on a scale from 0-100
+7. Filter out any issues with a score less than 30. If there are no issues that meet this criteria, do not proceed.
+
+8. **Output your review** in a structured format:
 
 **Format Example:**
 - **Summary:** High-level overview of issues and quality, including context from PR/MR description and comments

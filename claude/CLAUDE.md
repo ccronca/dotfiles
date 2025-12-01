@@ -142,7 +142,7 @@ When creating Jira issues using the `jira` CLI tool, follow these requirements:
 * **Always use:** `--no-input` flag to avoid interactive prompts
 * **Specify type:** Use `-t` to set issue type (Story, Task, Bug, etc.)
 * **Set project:** Use `-p` to specify the Jira project key
-* **Add labels:** Use `--label` for categorization
+* **Add labels:** Optionally use `--label` for categorization
 * **Summary:** Use `-s` for the issue title
 * **Description:** Use `-b` for the issue body
 
@@ -154,6 +154,40 @@ When creating Jira issues using the `jira` CLI tool, follow these requirements:
   * Bold: `*text*` (not `**text**`)
   * Code: `{{text}}` (not `` `text` ``)
   * Code blocks: `{code:language}...{code}` (not ` ```language `)
+
+#### CRITICAL FORMATTING REQUIREMENT
+
+**ALWAYS add an empty line after every h2. header before any content.**
+
+When creating heredocs for Jira descriptions, you MUST include a blank line after each header:
+
+**CORRECT:**
+```bash
+cat > /tmp/jira_body.txt << 'EOF'
+h2. Description
+
+This is the description text.
+
+h2. Acceptance Criteria
+
+* First criterion
+* Second criterion
+EOF
+```
+
+**INCORRECT - Will render content as part of header:**
+```bash
+cat > /tmp/jira_body.txt << 'EOF'
+h2. Description
+This is the description text.
+
+h2. Acceptance Criteria
+* First criterion
+* Second criterion
+EOF
+```
+
+Without the blank line, Jira will render the first line as part of the header text itself.
 
 ### Standard Issue Structure
 

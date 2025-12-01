@@ -10,6 +10,12 @@
       "Bash(gcalcli calm:*)",
       "Bash(gcalcli search:*)",
       "Bash(gcalcli list:*)",
+      "Bash(glab mr view:*)",
+      "Bash(glab mr diff:*)",
+      "Bash(gh pr view:*)",
+      "Bash(tree:*)",
+      "Bash(cat:*)",
+      "Bash(tail:*)",
       "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_dir",
       "mcp__mcp-obsidian-myjournal__obsidian_append_content",
       "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_vault",
@@ -17,7 +23,21 @@
       "mcp__mcp-obsidian-myjournal__obsidian_get_file_contents"
     ],
     "ask": [
-      "Bash(sudo:*)"
+      "Bash(sudo:*)",
+      "Bash(git push:*)",
+      "Bash(git reset:*)",
+      "Bash(git checkout:*)",
+      "Bash(git branch -D:*)",
+      "Bash(pip install:*)",
+      "Bash(npm install:*)",
+      "Bash(yarn add:*)",
+      "Bash(rm:*)",
+      "Bash(chmod:*)",
+      "Bash(chown:*)",
+      "Bash(jira issue create:*)",
+      "Bash(jira issue edit:*)",
+      "Bash(glab mr create:*)",
+      "Bash(gh pr create:*)"
     ]
   },
   "hooks": {
@@ -76,5 +96,5 @@
     "type": "command",
     "command": "bash $HOME/.claude/statusline-command.sh"
   },
-  "alwaysThinkingEnabled": false
+  "alwaysThinkingEnabled": true
 }
