@@ -16,20 +16,23 @@ Generate a standup summary based on yesterday's development and Jira journal ent
 
    If either file doesn't exist, inform the user which journal entry is missing and suggest running `/journal` or `/jira-journal` first.
 
-3. **Fetch previous standup entry:**
+3. **Fetch GitLab MR reviews** by reading the internal command file at `~/.claude/commands/.internal/fetch-mr-reviews.md` and executing its instructions to get MR reviews from the last day (same date range as the journals).
+
+4. **Fetch previous standup entry:**
    - Calculate the previous standup date (2 days ago, or Friday if today is Monday/Tuesday)
    - Try to fetch: `Journal/Standup/YYYY-MM-DD.md` for the previous date
    - If it exists, extract the "What will I accomplish today?" section
    - This will be used to compare planned vs actual work
 
-4. **Analyze the journal entries and previous standup:**
+5. **Analyze the journal entries, MR reviews, and previous standup:**
    - Extract key accomplishments from both journals
+   - Include MR reviews as part of yesterday's accomplishments
    - If previous standup exists, compare yesterday's accomplishments with what was planned
    - Identify any planned tasks that were not completed
    - Identify any blockers, issues, or challenges mentioned
    - Note incomplete tasks or follow-up items for today
 
-5. **Generate standup summary:**
+6. **Generate standup summary:**
    Create a concise standup update following this format:
 
    ```
@@ -38,6 +41,7 @@ Generate a standup summary based on yesterday's development and Jira journal ent
    **What did I accomplish yesterday?**
    - [Brief summary of key accomplishments from development journal]
    - [Summary of Jira tickets worked on and their status]
+   - [MR reviews completed (if any)]
    - [Notable achievements or completions]
 
    **What will I accomplish today?**
@@ -59,14 +63,14 @@ Generate a standup summary based on yesterday's development and Jira journal ent
    - Briefly note in the accomplishments if planned items were completed (shows accountability)
    - If tasks were planned but not done and no blocker is mentioned, consider if they should be carried over
 
-6. **Formatting guidelines:**
+7. **Formatting guidelines:**
    - Keep each section concise (2-4 bullet points maximum)
    - Use B2-level English
    - Focus on outcomes and impact, not technical details
    - No emojis
    - Professional tone suitable for standup meetings
 
-7. **Save and output the summary:**
+8. **Save and output the summary:**
    - Save the standup summary to Obsidian at `Journal/Standup/YYYY-MM-DD.md` (using today's date, not yesterday's)
    - The complete content should include:
      - Header: `# Standup Update - YYYY-MM-DD`
@@ -77,8 +81,9 @@ Generate a standup summary based on yesterday's development and Jira journal ent
    - Add appropriate tags at the end of the entry:
      - Always include: `#standup #meeting`
      - Add `#workstream/[project-name]` based on tickets/work mentioned
+     - Add `#code-review` if MR reviews are included in the standup
      - Add technology tags based on work (e.g., `#dbt`, `#python`, `#postgresql`)
-   - Format tags like: `Tags: #standup #meeting #workstream/pdm #dbt`
+   - Format tags like: `Tags: #standup #meeting #workstream/pdm #dbt #code-review`
    - Display the formatted standup summary to the user
 
 **Example output:**
@@ -89,7 +94,7 @@ Generate a standup summary based on yesterday's development and Jira journal ent
 **What did I accomplish yesterday?**
 - Completed dbt model refactoring for mart_finding_product_details
 - Fixed unit tests for bridge table mappings with lifecycle columns
-- Reviewed and merged MR for upstream subtree update
+- Reviewed MR !156 - Add data quality checks for finding ingestion (Author: jsmith)
 - Updated PDM-1234 status to Review and added implementation notes
 
 **What will I accomplish today?**
@@ -100,7 +105,7 @@ Generate a standup summary based on yesterday's development and Jira journal ent
 **Do I have any blockers?**
 - None
 
-Tags: #standup #meeting #workstream/pdm #dbt #jira
+Tags: #standup #meeting #workstream/pdm #dbt #code-review
 ```
 
 **Important:**
