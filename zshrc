@@ -77,7 +77,7 @@ else
 fi
 
 python_venv() {
-  local VENV_DIR=${HOME}/venv/$1
+  local VENV_DIR=./.venv
   echo $VENV_DIR
   [[ -d $VENV_DIR ]] && source $VENV_DIR/bin/activate > /dev/null 2>&1
 }

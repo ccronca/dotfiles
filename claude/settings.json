@@ -11,11 +11,13 @@
       "Bash(gcalcli search:*)",
       "Bash(gcalcli list:*)",
       "Bash(glab mr view:*)",
+      "Bash(glab mr list:*)",
       "Bash(glab mr diff:*)",
       "Bash(gh pr view:*)",
       "Bash(tree:*)",
       "Bash(cat:*)",
       "Bash(tail:*)",
+      "Read(~/.claude/commands/.internal/fetch-mr-reviews.md)",
       "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_dir",
       "mcp__mcp-obsidian-myjournal__obsidian_append_content",
       "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_vault",
@@ -67,6 +69,10 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/capture-events-simple.py --event-type SessionEnd"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/auto-journal-on-exit.py"
           }
         ]
       }
@@ -96,5 +102,5 @@
     "type": "command",
     "command": "bash $HOME/.claude/statusline-command.sh"
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": false
 }

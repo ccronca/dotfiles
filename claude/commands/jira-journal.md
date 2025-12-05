@@ -2,6 +2,7 @@ Generate a Jira work journal entry summarizing tickets worked on during a specif
 
 **Usage:**
 - `/jira-journal` - Summary for today
+- `/jira-journal yesterday` - Summary for yesterday (or last Friday if today is Monday/Sunday)
 - `/jira-journal week` - Summary for current week
 - `/jira-journal YYYY-MM-DD` - Summary for specific date
 
@@ -9,6 +10,10 @@ Generate a Jira work journal entry summarizing tickets worked on during a specif
 
 1. **Parse the time period:**
    - If no argument: use today's date
+   - If "yesterday": calculate yesterday's date
+     - If today is Monday (day 1), use last Friday (subtract 3 days)
+     - If today is Sunday (day 0), use last Friday (subtract 2 days)
+     - Otherwise, use yesterday (subtract 1 day)
    - If "week": use current week (Monday-Sunday)
    - If date format (YYYY-MM-DD): use that specific date
 

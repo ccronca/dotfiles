@@ -14,7 +14,15 @@ Generate a standup summary based on yesterday's development and Jira journal ent
 
    Use `mcp__mcp-obsidian-myjournal__obsidian_get_file_contents` for each file.
 
-   If either file doesn't exist, inform the user which journal entry is missing and suggest running `/journal` or `/jira-journal` first.
+   **If the Jira journal doesn't exist:**
+   - Automatically run `/jira-journal yesterday` to create it
+   - Wait for it to complete
+   - Then fetch the newly created Jira journal
+
+   **If the Development journal doesn't exist:**
+   - Inform the user that the development journal is missing
+   - Suggest running `/journal` or note that auto-journal should have captured it
+   - Continue with available data (Jira journal and MR reviews only)
 
 3. **Fetch GitLab MR reviews** by reading the internal command file at `~/.claude/commands/.internal/fetch-mr-reviews.md` and executing its instructions to get MR reviews from the last day (same date range as the journals).
 
