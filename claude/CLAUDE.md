@@ -137,6 +137,43 @@ Use the following format: `<type>(<scope>): <subject>`
 * Prefer built-in functions like `any()`, `all()`, `sum()` over manual loops
 * Use generator expressions for memory efficiency with large datasets
 
+**Code Linting:**
+
+When writing or modifying Python code, always run basic linting checks to ensure code quality:
+
+1. **Run flake8** (or available linter) after writing Python code:
+   ```bash
+   python3 -m flake8 script.py
+   ```
+
+2. **Fix critical issues immediately:**
+   - **Unused imports** (F401): Remove any imported modules that aren't used
+   - **Bare except clauses** (E722): Always specify exception types
+     ```python
+     # BAD
+     except:
+         pass
+
+     # GOOD
+     except (ValueError, TypeError, IOError):
+         pass
+     ```
+   - **Missing encoding in file operations**: Always specify `encoding='utf-8'` for text files
+     ```python
+     # BAD
+     with open(file_path, 'r') as f:
+
+     # GOOD
+     with open(file_path, 'r', encoding='utf-8') as f:
+     ```
+
+3. **Line length warnings** (E501): Address if reasonable, but can be ignored for URLs or long strings
+
+4. **When to run linting:**
+   - After creating a new Python file
+   - After modifying existing Python code
+   - Before committing Python changes
+
 **References:** [PEP 8](https://peps.python.org/pep-0008/), [PEP 20 - The Zen of Python](https://peps.python.org/pep-0020/)
 
 ---
