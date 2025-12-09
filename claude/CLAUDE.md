@@ -35,6 +35,11 @@ The PR/MR description **must** be clear, professional, and **structured with bul
     * **Do not modify the `main` or default branch** when developing a new feature.
     * Propose a **well-formatted, descriptive branch name** adhering to common conventions (e.g., starting with `feature/`).
     * Create the branch and switch to this new branch before development.
+* **Automatic Code Review:**
+    * After successfully creating a PR/MR, automatically launch the code-reviewer agent to review the changes.
+    * Use the Task tool with `subagent_type='code-reviewer'`.
+    * Provide the PR/MR number or branch name for context.
+    * Present the review findings to the user for consideration.
 
 ---
 
@@ -87,6 +92,52 @@ Use the following format: `<type>(<scope>): <subject>`
 * **Agent Usage:**
   * When working with dbt models, always use the dbt-data-engineer agent
   * For code reviews, always use the code-reviewer agent to ensure quality, security, and maintainability checks
+
+### Python: Always Follow the Pythonic Way
+
+**IMPORTANT:** When writing or modifying Python code, always use Pythonic patterns and idioms. Code should be clear, explicit, and follow Python's philosophy.
+
+**Key Pythonic Patterns:**
+
+1. **for-else loops** instead of flag variables
+   ```python
+   # GOOD - Pythonic
+   for item in items:
+       if condition(item):
+           break
+   else:
+       handle_not_found()
+   ```
+
+2. **Context managers** for resource management (`with` statements)
+
+3. **List/dict comprehensions** for transformations
+
+4. **Truthiness checks** instead of explicit comparisons
+   ```python
+   # GOOD: if items:
+   # BAD: if len(items) > 0:
+   ```
+
+5. **None checks** using `is`/`is not` (not `==`/`!=`)
+
+6. **enumerate()** instead of manual indexing
+
+7. **zip()** for parallel iteration
+
+8. **Dictionary get()** with defaults instead of key checks
+
+9. **F-strings** for formatting (Python 3.6+)
+
+10. **Type hints** for function signatures
+
+**Code Quality:**
+* Always check for None before accessing attributes (null safety)
+* Use `functools` decorators (`@lru_cache`, `@cache`) for memoization
+* Prefer built-in functions like `any()`, `all()`, `sum()` over manual loops
+* Use generator expressions for memory efficiency with large datasets
+
+**References:** [PEP 8](https://peps.python.org/pep-0008/), [PEP 20 - The Zen of Python](https://peps.python.org/pep-0020/)
 
 ---
 
