@@ -15,6 +15,7 @@ CONFIG_DIRS=(
     "commands"
     "hooks"
     "plugins"
+    "skills"
 )
 
 echo "Setting up Claude configuration symlinks..."

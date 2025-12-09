@@ -27,3 +27,8 @@ hooks/__pycache__/
 # Allow plugins directory and its contents (optional)
 !plugins/
 !plugins/*
+
+# Allow skills directory and its contents
+!skills/
+!skills/*/
+!skills/*/**

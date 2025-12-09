@@ -20,6 +20,7 @@
       "Bash(cat:*)",
       "Bash(tail:*)",
       "Read(~/.claude/commands/.internal/fetch-mr-reviews.md)",
+      "Read(~/.claude/*)",
       "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_dir",
       "mcp__mcp-obsidian-myjournal__obsidian_append_content",
       "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_vault",
