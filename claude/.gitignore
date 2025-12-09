@@ -21,6 +21,8 @@
 # Allow hooks directory and its contents
 !hooks/
 !hooks/*
+# But ignore Python cache
+hooks/__pycache__/
 
 # Allow plugins directory and its contents (optional)
 !plugins/

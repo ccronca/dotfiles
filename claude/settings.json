@@ -16,6 +16,7 @@
       "Bash(glab mr diff:*)",
       "Bash(gh pr view:*)",
       "Bash(tree:*)",
+      "Bash(ls:*)",
       "Bash(cat:*)",
       "Bash(tail:*)",
       "Read(~/.claude/commands/.internal/fetch-mr-reviews.md)",
