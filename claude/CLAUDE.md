@@ -136,6 +136,7 @@ Use the following format: `<type>(<scope>): <subject>`
 * Use `functools` decorators (`@lru_cache`, `@cache`) for memoization
 * Prefer built-in functions like `any()`, `all()`, `sum()` over manual loops
 * Use generator expressions for memory efficiency with large datasets
+* Avoid obvious comments that merely repeat what the code does - comments should explain why, not what
 
 **Code Linting:**
 
