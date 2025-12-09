@@ -225,8 +225,9 @@ def append_to_journal(date_str: str, entry: str) -> bool:
 
 
 def main():
-    # Setup logging
-    log_file = Path.home() / '.claude' / 'history' / 'auto-journal.log'
+    # Setup logging with date-based filename
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    log_file = Path.home() / '.claude' / 'history' / f'auto-journal-{date_str}.log'
     log_file.parent.mkdir(parents=True, exist_ok=True)
 
     def log(message):
