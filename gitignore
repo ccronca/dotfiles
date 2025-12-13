@@ -132,3 +132,6 @@ lude
 
 # Internal document folder
 .internal_docs/
+
+# Claude
+.claude
