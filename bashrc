@@ -5,6 +5,13 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+# Load environment variables from .env
+if [ -f ~/.env ]; then
+    set -a  # Automatically export all variables
+    source ~/.env
+    set +a  # Stop automatically exporting
+fi
+
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"

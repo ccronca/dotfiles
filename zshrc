@@ -87,7 +87,14 @@ function mcd() {
   mkdir -p "$1" && cd "$1";
 }
 
-# Local config
+# Load environment variables from .env
+if [ -f ~/.env ]; then
+  set -a  # Automatically export all variables
+  source ~/.env
+  set +a  # Stop automatically exporting
+fi
+
+# Local config (for shell-specific configurations)
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 # aliases
