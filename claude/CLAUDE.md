@@ -13,6 +13,48 @@ This document outlines the best practices and mandatory rules to follow when gen
 
 ---
 
+## Claude Code Settings and Documentation
+
+**IMPORTANT:** When working with Claude Code configuration or features:
+
+* **Always use the claude-docs skill** to verify syntax, patterns, and configuration before making changes
+* **Check official documentation** for permission patterns, auto-approval syntax, hooks, and other settings
+* **Do NOT guess** at configuration syntax - fetch the relevant documentation first
+
+Examples of when to use claude-docs skill:
+* Modifying `settings.json` (permissions, auto-approval patterns, hooks)
+* Creating or updating hooks
+* Working with slash commands
+* Configuring MCP servers
+* Understanding tool-specific permission rules
+
+---
+
+## Description Guidelines for Commits and Pull Requests
+
+**IMPORTANT:** Both commit messages and PR/MR descriptions should be concise summaries, not detailed changelogs.
+
+### What NOT to Include
+
+Do NOT include in commit messages or PR/MR descriptions:
+
+* **Test results** - No mentions of "tests passed", "all tests passing", "CI pipeline green"
+* **Specific test details** - No descriptions of individual test implementations or test names
+* **Exhaustive lists** - No listing every single file, commit, or line changed
+* **Implementation minutiae** - No low-level technical details of how something was implemented
+* **Obvious information** - No describing what git already tracks (file lists, diffs)
+
+### What TO Include
+
+DO include in both commit messages and PR/MR descriptions:
+
+* **High-level summary** - What changed at a conceptual level
+* **Motivation** - Why the change was necessary
+* **Impact** - What benefit or problem solved
+* **Design decisions** - Architectural or design-level choices (for PRs/MRs)
+
+---
+
 ## Pull Request (PR) and Merge Request (MR) Guidelines
 
 Merge Requests (MRs) must follow the same principles and best practices used for creating a Pull Request (PR).
@@ -22,10 +64,11 @@ Merge Requests (MRs) must follow the same principles and best practices used for
 The PR/MR description **must** be clear, professional, and **structured with bullet points**.
 
 * **Reviewer Context:** Assume the reviewers are familiar with the project and **do not require extensive background** on the overall architecture.
+* **Follow Description Guidelines:** See @"Description Guidelines for Commits and Pull Requests" section above for what to include and exclude.
 * **Mandatory Sections:** The description must include:
     * **Summary:** A brief explanation of the change.
     * **Motivation:** Why the change is needed.
-    * **Overview of changes:** Focus only on the **design points**, not the full commits. Summarize the overall impact and architectural or design-level changes. **Do not** include details of individual commits or all modified files.
+    * **Overview of changes:** Focus only on the **design points**, not the full commits. Summarize the overall impact and architectural or design-level changes.
     * **Testing steps (Optional):** How to verify the change. **Only include this if it is strictly necessary** and not covered by other testing (e.g., unit tests).
 
 ### II. Attribution and Workflow
@@ -72,6 +115,7 @@ Use the following format: `<type>(<scope>): <subject>`
 
 ### Additional Requirements
 
+* **Follow Description Guidelines:** See @"Description Guidelines for Commits and Pull Requests" section above for what to include and exclude.
 * **Format:** Make them **concise**, use the **imperative mood** ("add" not "added"), **start with a capital letter**, and **avoid punctuation at the end**.
 * **Content:** Clearly describe **what and why** the change was made.
 * **Length:**
@@ -81,7 +125,27 @@ Use the following format: `<type>(<scope>): <subject>`
 * **Footer:** Use footer for references (e.g., issue numbers) or breaking changes.
 * **Attribution:** **Include Claude attribution** within the commit message.
 * **Sign-off:** **Always include the `Signed-off-by` line**. Use the `--signoff` flag when creating commits with `git`.
-* Focus on summarizing the **high-level purpose and impact of the changes** rather than listing individual file edits or small details.
+
+### Commit Message Examples
+
+**BAD - Too detailed:**
+```
+fix(api): Fix null handling in user endpoint
+
+- Modified src/api/users.py line 45 to add null check
+- Updated src/models/user.py line 23 to handle None values
+- Added test_user_null_handling in tests/test_api.py
+- Added test_user_response_validation in tests/test_api.py
+- All 47 tests passing
+```
+
+**GOOD - Concise summary:**
+```
+fix(api): Handle null values in user response
+
+Prevent crashes when user data contains null fields by adding
+validation before processing.
+```
 
 ---
 
@@ -92,6 +156,45 @@ Use the following format: `<type>(<scope>): <subject>`
 * **Agent Usage:**
   * When working with dbt models, always use the dbt-data-engineer agent
   * For code reviews, always use the code-reviewer agent to ensure quality, security, and maintainability checks
+
+### General Coding Best Practices
+
+**IMPORTANT:** Apply these principles to all code, regardless of language.
+
+**1. DRY (Don't Repeat Yourself)**
+* Never duplicate code - if the same logic appears in multiple places, extract it into a shared function or module
+* Refactor immediately when you notice duplication
+* Each piece of knowledge should have one authoritative representation
+
+**2. KISS (Keep It Simple, Stupid)**
+* Prefer simple, clear solutions over clever or complex ones
+* Avoid over-engineering - only add complexity when truly needed
+* If something can be done in 5 lines instead of 50, choose the simpler approach
+
+**3. YAGNI (You Aren't Gonna Need It)**
+* Don't add functionality until it's actually needed
+* Avoid building for hypothetical future requirements
+* Focus on solving the current problem
+
+**4. Separation of Concerns**
+* Each function/module should have a single, well-defined responsibility
+* Keep business logic separate from presentation logic
+* Database access, API calls, and data processing should be in separate layers
+
+**5. Meaningful Names**
+* Use descriptive variable, function, and file names
+* Names should reveal intent - avoid abbreviations unless universally understood
+* Functions should be verbs, variables should be nouns
+
+**6. Fail Fast**
+* Validate inputs early and return/throw errors immediately
+* Don't let invalid data propagate through the system
+* Use guard clauses to handle edge cases upfront
+
+**7. Consistency**
+* Follow existing patterns and conventions in the codebase
+* If the project uses a certain style or structure, maintain it
+* Don't mix different approaches to solving the same problem
 
 ### Python: Always Follow the Pythonic Way
 
@@ -244,39 +347,63 @@ When creating Jira issues using the `jira` CLI tool, follow these requirements:
   * Code: `{{text}}` (not `` `text` ``)
   * Code blocks: `{code:language}...{code}` (not ` ```language `)
 
-#### CRITICAL FORMATTING REQUIREMENT
+#### CRITICAL FORMATTING REQUIREMENTS
 
-**ALWAYS add an empty line after every h2. header before any content.**
+**YOU MUST FOLLOW THESE FORMATTING RULES OR JIRA WILL RENDER INCORRECTLY:**
 
-When creating heredocs for Jira descriptions, you MUST include a blank line after each header:
+1. **MANDATORY blank line after every `h2.` header**
+2. **MANDATORY blank line before every list (lines starting with `*`)**
+
+When creating heredocs for Jira descriptions, verify blank lines are in the correct positions:
 
 **CORRECT:**
 ```bash
 cat > /tmp/jira_body.txt << 'EOF'
 h2. Description
 
-This is the description text.
+This is the description text with some explanation.
 
 h2. Acceptance Criteria
 
 * First criterion
 * Second criterion
+* Third criterion
 EOF
 ```
 
-**INCORRECT - Will render content as part of header:**
+**INCORRECT - Will render incorrectly:**
 ```bash
 cat > /tmp/jira_body.txt << 'EOF'
 h2. Description
-This is the description text.
+This text becomes part of the header!
 
 h2. Acceptance Criteria
-* First criterion
+* This becomes part of the header!
 * Second criterion
 EOF
 ```
 
-Without the blank line, Jira will render the first line as part of the header text itself.
+**If text appears before a list, add blank line before the list:**
+```bash
+# CORRECT:
+h2. Description
+
+Some explanatory text here.
+
+* First item
+* Second item
+
+# INCORRECT:
+h2. Description
+
+Some explanatory text here.
+* This item merges with previous line!
+* Second item
+```
+
+**Why this matters:**
+- Without blank line after `h2.`: Next line becomes part of the header
+- Without blank line before `*`: List items merge with previous line
 
 ### Standard Issue Structure
 
