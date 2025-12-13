@@ -3,12 +3,12 @@
 # This script generates the statusline information displayed in Claude Code
 
 # Get current git branch if in a git repository
-if git rev-parse --git-dir > /dev/null 2>&1; then
+if git rev-parse --git-dir >/dev/null 2>&1; then
     branch=$(git branch --show-current 2>/dev/null)
 
     # Get repository status
     if [[ -n $(git status -s 2>/dev/null) ]]; then
-        status="*"  # Modified files
+        status="*" # Modified files
     else
         status=""
     fi

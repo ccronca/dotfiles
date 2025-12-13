@@ -9,7 +9,7 @@ mkdir -p $olddir
 echo "...done"
 
 echo "Changing to the $dir directory"
-cd $dir
+cd "$dir" || exit
 echo "...done"
 
 for file in $files; do

@@ -64,4 +64,4 @@ echo ""
 echo "Claude configuration setup complete!"
 echo ""
 echo "Symlinked files:"
-ls -la "$CLAUDE_DIR" | grep " -> $DOTFILES_CLAUDE"
+find "$CLAUDE_DIR" -maxdepth 1 -type l -lname "*$DOTFILES_CLAUDE*" -ls
