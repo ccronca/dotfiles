@@ -53,3 +53,7 @@ echo "Vim plugins management complete!"
 echo ""
 echo "Setting up Claude configuration..."
 bash "$dir/setup_claude_config.sh"
+
+echo ""
+echo "Setting up Gemini configuration..."
+bash "$dir/setup_gemini_config.sh"

@@ -24,6 +24,7 @@ This script will:
 * Set up vim directories (backups, swaps, undo)
 * Install and update vim plugins (CtrlP, Tagbar)
 * Configure Claude Code settings (symlinks config files while preserving runtime data)
+* Configure Gemini settings (symlinks config files)
 
 ## What's Included
 
@@ -46,6 +47,18 @@ To manually update Claude configuration only:
 
 ```bash
 ./setup_claude_config.sh
+```
+
+## Gemini Configuration
+
+The Gemini configuration is handled separately:
+
+* **Symlinked files**: settings.json
+
+To manually update Gemini configuration only:
+
+```bash
+./setup_gemini_config.sh
 ```
 
 ## MCP Server Configuration
