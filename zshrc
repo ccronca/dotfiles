@@ -99,9 +99,6 @@ fi
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
-[[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
-
-export GVM_DEBUG=${GVM_DEBUG:-0}
 
 # https://github.com/anthropics/claude-code/issues/2407#issuecomment-3013345884
 claude() {

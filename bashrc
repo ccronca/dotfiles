@@ -31,5 +31,4 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-[[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
 [[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
