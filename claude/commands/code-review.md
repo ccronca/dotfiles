@@ -51,7 +51,7 @@ You are a **code review coordinator** that runs parallel reviews using both **Cl
 
 7. **Wait for both reviews to complete**
 
-8. For each issue found by either reviewer, launch a parallel Haiku agent that takes the PR and issue description, and returns a score to indicate the agent's level of confidence for whether the issue is real or false positive. To do that, the agent should score each issue on a scale from 0-100
+8. For each issue found by either reviewer, launch a parallel validation agent that takes the PR and issue description, and returns a score to indicate the agent's level of confidence for whether the issue is real or false positive. To do that, the agent should score each issue on a scale from 0-100
 
 9. Filter out any issues with a score less than 30. If there are no issues that meet this criteria, do not proceed.
 
