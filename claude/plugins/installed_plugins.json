@@ -1,4 +1,16 @@
 {
   "version": 2,
-  "plugins": {}
+  "plugins": {
+    "superpowers@superpowers-marketplace": [
+      {
+        "scope": "user",
+        "installPath": "~/.claude/plugins/cache/superpowers-marketplace/superpowers/3.6.2",
+        "version": "3.6.2",
+        "installedAt": "2025-12-16T17:43:04.546Z",
+        "lastUpdated": "2025-12-16T17:43:04.546Z",
+        "gitCommitSha": "5faddc4087553bdc3c7ee98a83300e844295207e",
+        "isLocal": false
+      }
+    ]
+  }
 }

@@ -109,5 +109,8 @@
   "statusLine": {
     "type": "command",
     "command": "bash $HOME/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": true
   }
 }
