@@ -280,6 +280,83 @@ When writing or modifying Python code, always run basic linting checks to ensure
 
 **References:** [PEP 8](https://peps.python.org/pep-0008/), [PEP 20 - The Zen of Python](https://peps.python.org/pep-0020/)
 
+### Bash: Error Handling and Script Safety
+
+**IMPORTANT:** When writing or modifying Bash scripts, always include strict error handling at the beginning of the script.
+
+**Mandatory Error Handling:**
+
+Every Bash script must start with:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+```
+
+**What each flag does:**
+
+* `set -e`: Exit immediately if any command exits with a non-zero status (fail fast)
+* `set -u`: Treat unset variables as an error and exit immediately
+* `set -o pipefail`: Return the exit status of the last command in a pipeline that failed (not just the last command)
+
+**Why this matters:**
+
+* **Prevents silent failures:** Without these flags, scripts can continue running after errors, leading to data corruption or incorrect state
+* **Catches typos:** Unset variables will cause immediate failure instead of being treated as empty strings
+* **Pipeline safety:** Ensures errors in the middle of a pipeline are not ignored
+
+**Debug Mode:**
+
+For debugging purposes, you can temporarily add the `-x` flag:
+
+```bash
+#!/usr/bin/env bash
+set -euxo pipefail  # Added -x for debugging
+```
+
+**CRITICAL WARNING about debug mode:**
+* **NEVER leave `set -x` enabled in production scripts**
+* The `-x` flag prints every command before execution, which **can leak sensitive data** such as:
+  * Passwords and API keys passed as variables
+  * Database connection strings
+  * Authentication tokens
+  * Private file contents
+* **Only use `set -x` during development/debugging**
+* **Always remove it before committing to production**
+
+**Example:**
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Script will exit immediately if:
+# - Any command fails (set -e)
+# - An undefined variable is used (set -u)
+# - Any command in a pipeline fails (set -o pipefail)
+
+DATABASE_URL="${DATABASE_URL}"  # Will fail if not set (set -u)
+psql "${DATABASE_URL}" < schema.sql  # Will fail if psql fails (set -e)
+```
+
+**Exceptions:**
+
+If you need to handle errors explicitly in specific cases, you can temporarily disable error handling:
+
+```bash
+set -euo pipefail
+
+# Temporarily allow a command to fail
+set +e
+some_command_that_might_fail
+exit_code=$?
+set -e
+
+if [ $exit_code -ne 0 ]; then
+    echo "Command failed as expected"
+fi
+```
+
 ---
 
 ## Python Virtual Environment Guidelines
@@ -404,6 +481,102 @@ Some explanatory text here.
 **Why this matters:**
 - Without blank line after `h2.`: Next line becomes part of the header
 - Without blank line before `*`: List items merge with previous line
+
+#### HANDLING SPECIAL CHARACTERS
+
+**IMPORTANT:** When including content with special characters (SQL queries, code snippets with parentheses, etc.), use `{panel}` blocks instead of `{code}` or `{noformat}` blocks to avoid character escaping issues.
+
+**Problem:** Jira wiki markup may escape certain characters even inside code blocks:
+- Parentheses `()` in SQL queries
+- Double dashes `--` in SQL comments
+- Other special characters
+
+**Solution:** Use `{panel}` blocks for SQL queries and complex code:
+
+```bash
+cat > /tmp/jira_body.txt << 'EOF'
+h2. Database Queries
+
+{panel:title=Query 1: Staging count}
+SELECT COUNT(*) FROM pdm_staging.stg_ocsf_findings
+WHERE DATE(staging_loaded_at) = CURRENT_DATE
+  AND tool_name IN ('sar', 'tm', 'pentest');
+
+Result: 5,439 findings
+{panel}
+
+{panel:title=Query 2: Bridge current mappings}
+SELECT COUNT(*) FROM pdm_core.bridge_component_product_current
+WHERE is_current_mapping = TRUE
+  AND tool_name IN ('sar', 'tm', 'pentest');
+
+Result: 5,625 instances
+{panel}
+EOF
+```
+
+**Benefits of `{panel}` blocks:**
+- Prevents character escaping
+- Creates collapsible sections
+- Better visual organization
+- Handles parentheses, quotes, and special characters correctly
+
+### File-Based Approach for Long Content
+
+**IMPORTANT:** For long or complex issue descriptions and comments, always use a file-based approach instead of inline heredocs to avoid issues with command-line length limits and character escaping.
+
+**Recommended method:**
+
+1. Write the content to a temporary file
+2. Use `cat` with stdin to pass the file content
+3. Clean up is automatic (temp files in `/tmp`)
+
+**Example for issue creation:**
+
+```bash
+# Write description to file
+cat > /tmp/jira_body.txt << 'EOF'
+h2. Description
+
+Your detailed description here...
+
+h2. Tasks
+
+* Task 1
+* Task 2
+EOF
+
+# Create issue using file content
+jira issue create --no-input \
+  -t "Task" \
+  -p "PROJECT" \
+  -s "Issue summary here" \
+  -b "$(cat /tmp/jira_body.txt)"
+```
+
+**Example for adding comments:**
+
+```bash
+# Write comment to file
+cat > /tmp/jira_comment.txt << 'EOF'
+h3. Validation Results
+
+{panel:title=Database Counts}
+SELECT COUNT(*) FROM table_name;
+Result: 1,234 rows
+{panel}
+EOF
+
+# Add comment using stdin (preferred method)
+cat /tmp/jira_comment.txt | jira issue comment add ISSUE-123
+```
+
+**Why use files:**
+- Avoids shell quoting issues
+- Prevents command-line length limits
+- Easier to debug (can inspect the file)
+- Cleaner code organization
+- Better handling of special characters
 
 ### Standard Issue Structure
 
