@@ -50,7 +50,7 @@ Generate a Google Calendar journal entry summarizing meetings for a specific tim
      - Longest meeting
 
 5. **Create Obsidian journal entry:**
-   Save to `Journal/Calendar/YYYY-MM-DD.md` (or `Journal/Calendar/YYYY-Www.md` for weekly summaries) with format:
+   Save to `Work Journal/Calendar/YYYY-MM-DD.md` (or `Work Journal/Calendar/YYYY-Www.md` for weekly summaries) with format:
 
    ```markdown
    # Calendar Journal - [Date/Week]

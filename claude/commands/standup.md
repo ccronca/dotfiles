@@ -9,8 +9,8 @@ Generate a standup summary based on yesterday's development and Jira journal ent
    - Format as YYYY-MM-DD
 
 2. **Fetch journal entries from Obsidian:**
-   - Development journal: `Journal/Development/YYYY-MM-DD.md`
-   - Jira journal: `Journal/Jira/YYYY-MM-DD.md`
+   - Development journal: `Work Journal/Development/YYYY-MM-DD.md`
+   - Jira journal: `Work Journal/Jira/YYYY-MM-DD.md`
 
    Use `mcp__mcp-obsidian-myjournal__obsidian_get_file_contents` for each file.
 
@@ -28,7 +28,7 @@ Generate a standup summary based on yesterday's development and Jira journal ent
 
 4. **Fetch previous standup entry:**
    - Calculate the previous standup date (2 days ago, or Friday if today is Monday/Tuesday)
-   - Try to fetch: `Journal/Standup/YYYY-MM-DD.md` for the previous date
+   - Try to fetch: `Work Journal/Standup/YYYY-MM-DD.md` for the previous date
    - If it exists, extract the "What will I accomplish today?" section
    - This will be used to compare planned vs actual work
 
@@ -79,7 +79,7 @@ Generate a standup summary based on yesterday's development and Jira journal ent
    - Professional tone suitable for standup meetings
 
 8. **Save and output the summary:**
-   - Save the standup summary to Obsidian at `Journal/Standup/YYYY-MM-DD.md` (using today's date, not yesterday's)
+   - Save the standup summary to Obsidian at `Work Journal/Standup/YYYY-MM-DD.md` (using today's date, not yesterday's)
    - The complete content should include:
      - Header: `# Standup Update - YYYY-MM-DD`
      - The three standup sections (What accomplished, What will accomplish, Blockers)

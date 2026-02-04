@@ -149,6 +149,38 @@ validation before processing.
 
 ---
 
+## Documentation and Design Plans Guidelines
+
+### Design Documents and Plans
+
+**IMPORTANT**: Do NOT commit design documents or plans to git unless explicitly requested by the user.
+
+**Files that should NOT be auto-committed:**
+* Design documents in `docs/plans/` directory
+* Brainstorming outputs and exploratory documents
+* Analysis reports and investigation documents
+* Draft documentation
+
+**Reason**: These are working documents that require human review and approval before being added to version control. The user will review and commit manually if they want to preserve them.
+
+**Files that CAN be committed** (when part of a feature/fix):
+* Code changes (scripts, models, source files, etc.)
+* Bug fixes and feature implementations
+* Test files
+
+**Files that CAN be committed when explicitly requested:**
+* ADRs (Architecture Decision Records) in `docs/ADR/`
+* README updates
+* API documentation updates
+
+**Workflow:**
+1. Create design documents as requested
+2. Present them to the user for review
+3. Wait for explicit instruction before committing
+4. Only commit if user approves and requests it
+
+---
+
 ## Code Generation Guidelines
 
 * **Comments:** Include comments **only if they add meaningful context**. Avoid adding comments that do not clarify the code.

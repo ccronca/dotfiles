@@ -18,27 +18,42 @@ Generate a Jira work journal entry summarizing tickets worked on during a specif
    - If date format (YYYY-MM-DD): use that specific date
 
 2. **Query Jira for tickets:**
-   Use the `jira` CLI to fetch tickets you've worked on during the period:
+   Use the `jira` CLI to fetch tickets you've worked on during the period.
+
+   **IMPORTANT:** Query includes issues where you are:
+   - Assigned to the issue (assignee)
+   - Created the issue (reporter)
+
    ```bash
-   # For today
-   jira issue list --assignee $(jira me) --updated "-1d" --plain --columns key,summary,status,updated
+   # For today (last 1 day)
+   jira issue list --jql "updated >= -1d AND (assignee = currentUser() OR reporter = currentUser())" --plain --columns key,summary,status,updated
 
-   # For this week
-   jira issue list --assignee $(jira me) --updated "-7d" --plain --columns key,summary,status,updated
+   # For this week (last 7 days)
+   jira issue list --jql "updated >= -7d AND (assignee = currentUser() OR reporter = currentUser())" --plain --columns key,summary,status,updated
 
-   # For specific date
-   jira issue list --assignee $(jira me) --jql "updated >= '2025-11-21' AND updated <= '2025-11-25'" --plain --columns key,summary,status,updated
+   # For specific date range
+   jira issue list --jql "updated >= '2025-11-21' AND updated <= '2025-11-25' AND (assignee = currentUser() OR reporter = currentUser())" --plain --columns key,summary,status,updated
    ```
+
+   **Note on commented issues:** Native Jira JQL doesn't support filtering by commenter without a plugin (requires ScriptRunner or similar extension). To include issues you've only commented on, you'll need to check comments manually in step 3.
 
 3. **Fetch detailed information for each ticket:**
    For each ticket found, get:
    - Issue key and summary
    - Current status
-   - Recent comments you've added
+   - Recent comments (check if you authored any)
    - Recent worklogs
    - Status transitions during the period
 
-   Use: `jira issue view KEY --comments 5 --plain`
+   Use: `jira issue view KEY --comments 10 --plain`
+
+   **Identifying your comments:** When viewing issue details, look for comments authored by your username. The output will show:
+   ```
+   Comments:
+   - <username> commented at <timestamp>: <comment text>
+   ```
+
+   Filter for only issues where you've added comments during the time period, or include all issues you're assigned to/created.
 
 4. **Generate summary:**
    Create a narrative summary that includes:
@@ -50,7 +65,7 @@ Generate a Jira work journal entry summarizing tickets worked on during a specif
    - Any blockers or issues encountered
 
 5. **Create Obsidian journal entry:**
-   Save to `Journal/Jira/YYYY-MM-DD.md` (or `Journal/Jira/YYYY-Www.md` for weekly summaries) with format:
+   Save to `Work Journal/Jira/YYYY-MM-DD.md` (or `Work Journal/Jira/YYYY-Www.md` for weekly summaries) with format:
 
    ```markdown
    # Jira Work Journal - [Date/Week]
@@ -63,14 +78,16 @@ Generate a Jira work journal entry summarizing tickets worked on during a specif
    ### [TICKET-123] Ticket Summary
    **Status:** In Progress → Review
    **Time Spent:** 3h
+   **Role:** Assignee
 
-   [Description of work done on this ticket]
+   [Description of work done on this ticket, including any comments added]
 
    ### [TICKET-124] Another Ticket
    **Status:** To Do → In Progress
    **Time Spent:** 1.5h
+   **Role:** Reporter
 
-   [Description of work done]
+   [Description of work done, collaboration through comments]
 
    ## Notes
    - Key decisions made

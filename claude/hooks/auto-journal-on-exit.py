@@ -155,7 +155,7 @@ def check_if_already_journaled(session_id: str, date_str: str) -> bool:
     try:
         # Use environment variable for vault path or default
         vault_path = os.environ.get('OBSIDIAN_VAULT_PATH', str(Path.home() / 'myjournal'))
-        journal_file = Path(vault_path) / 'Journal' / 'Development' / f'{date_str}.md'
+        journal_file = Path(vault_path) / 'Work Journal' / 'Development' / f'{date_str}.md'
 
         if journal_file.exists():
             content = journal_file.read_text()
@@ -172,7 +172,7 @@ def replace_session_in_journal(date_str: str, session_id: str, new_entry: str) -
     """Replace existing session entry in journal."""
     try:
         vault_path = os.environ.get('OBSIDIAN_VAULT_PATH', str(Path.home() / 'myjournal'))
-        journal_file = Path(vault_path) / 'Journal' / 'Development' / f'{date_str}.md'
+        journal_file = Path(vault_path) / 'Work Journal' / 'Development' / f'{date_str}.md'
 
         if not journal_file.exists():
             return False
@@ -203,7 +203,7 @@ def append_to_journal(date_str: str, entry: str) -> bool:
     """Append entry to Obsidian journal."""
     try:
         vault_path = os.environ.get('OBSIDIAN_VAULT_PATH', str(Path.home() / 'myjournal'))
-        journal_file = Path(vault_path) / 'Journal' / 'Development' / f'{date_str}.md'
+        journal_file = Path(vault_path) / 'Work Journal' / 'Development' / f'{date_str}.md'
 
         # Create directory if it doesn't exist
         journal_file.parent.mkdir(parents=True, exist_ok=True)

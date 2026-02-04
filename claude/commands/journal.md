@@ -4,7 +4,7 @@ The Journaling skill will analyze the session transcript and create a structured
 
 After the skill completes:
 
-**Create the Obsidian journal entry** in the myjournal vault at `Journal/Development/YYYY-MM-DD.md` with:
+**Create the Obsidian journal entry** in the myjournal vault at `Work Journal/Development/YYYY-MM-DD.md` with:
    - Session ID and timestamp
    - Working directory and duration
    - Summary and focus from the Journaling skill

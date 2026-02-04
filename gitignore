@@ -135,3 +135,6 @@ lude
 
 # Claude
 .claude
+
+# Prevent worktree directories from being tracked in git
+.worktrees
