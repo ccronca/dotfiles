@@ -185,9 +185,10 @@ validation before processing.
 
 * **Comments:** Include comments **only if they add meaningful context**. Avoid adding comments that do not clarify the code.
 * **Purpose:** Add comments especially when something is **ambiguous, involves a design decision, or requires explanation** for readability and maintainability.
-* **Agent Usage:**
+* **Agent and Skill Usage:**
   * When working with dbt models, always use the dbt-data-engineer agent
   * For code reviews, always use the code-reviewer agent to ensure quality, security, and maintainability checks
+  * **When working with Containerfiles or Kubernetes manifests, always use the container-k8s-validator skill** to validate path consistency and completeness
 
 ### General Coding Best Practices
 
