@@ -272,9 +272,10 @@ def main():
         # Check if already journaled
         already_exists = check_if_already_journaled(session_id, date_str)
         if already_exists:
-            log("Session already journaled, will replace existing entry")
-        else:
-            log("Session not yet journaled, will create new entry")
+            log("Session already journaled (by manual /journal or previous run), skipping to preserve existing entry")
+            sys.exit(0)
+
+        log("Session not yet journaled, will create new entry")
 
         # Parse transcript
         transcript_data = parse_transcript(transcript_path)
@@ -296,18 +297,13 @@ def main():
         vault_path = os.environ.get('OBSIDIAN_VAULT_PATH', str(Path.home() / 'myjournal'))
         log(f"Writing to journal in vault: {vault_path}")
 
-        # Replace existing entry or append new one
-        if already_exists:
-            success = replace_session_in_journal(date_str, session_id, entry)
-            action = "replaced"
-        else:
-            success = append_to_journal(date_str, entry)
-            action = "created"
+        # Append new entry (never replace existing ones)
+        success = append_to_journal(date_str, entry)
 
         if success:
-            log(f"✓ Successfully {action} journal entry for session {session_id[:8]}")
+            log(f"✓ Successfully created journal entry for session {session_id[:8]}")
         else:
-            log(f"✗ Failed to {action.replace('d', '')} journal entry for session {session_id[:8]}")
+            log(f"✗ Failed to create journal entry for session {session_id[:8]}")
 
     except Exception as e:
         # Log error but don't block Claude Code

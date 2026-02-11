@@ -1,6 +1,9 @@
 {
   "includeCoAuthoredBy": true,
   "permissions": {
+    "deny": [
+      "Bash(git subtree *)"
+    ],
     "allow": [
       "Bash(git log:*)",
       "Bash(git diff:*)",

@@ -68,8 +68,9 @@ The PR/MR description **must** be clear, professional, and **structured with bul
 * **Mandatory Sections:** The description must include:
     * **Summary:** A brief explanation of the change.
     * **Motivation:** Why the change is needed.
-    * **Overview of changes:** Focus only on the **design points**, not the full commits. Summarize the overall impact and architectural or design-level changes.
-    * **Testing steps (Optional):** How to verify the change. **Only include this if it is strictly necessary** and not covered by other testing (e.g., unit tests).
+* **Optional Sections:**
+    * **Overview of changes:** **Only include this section if it provides meaningful design or architectural insights** that are not obvious from reading the code diff. Do NOT include if it would just summarize what the code already shows. Focus on design decisions, architectural patterns, or non-obvious implications when included.
+    * **Testing steps:** How to verify the change. **Only include this if it is strictly necessary** and not covered by other testing (e.g., unit tests).
 
 ### II. Attribution and Workflow
 
