@@ -13,6 +13,36 @@ This document outlines the best practices and mandatory rules to follow when gen
 
 ---
 
+## Prompt Rewriting Hook Response Format
+
+**IMPORTANT:** When the user triggers the prompt rewriting hook (using `#rw` prefix):
+
+* **Always acknowledge the rewrite** at the start of your response
+* **Show both versions:** Display the original and improved prompts
+* **Highlight key improvements:** Briefly explain what changed and why
+* **Then proceed** with answering the improved prompt
+
+**Format to use:**
+
+```
+📝 Your original prompt:
+"[original text]"
+
+✨ Improved version:
+"[improved text]"
+
+Key improvements:
+- [improvement 1]
+- [improvement 2]
+- [improvement 3]
+
+[Then continue with the actual answer to the improved prompt]
+```
+
+**Purpose:** This helps the user learn English by seeing concrete examples of grammatical corrections and clarity improvements.
+
+---
+
 ## Claude Code Settings and Documentation
 
 **IMPORTANT:** When working with Claude Code configuration or features:

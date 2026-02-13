@@ -118,6 +118,46 @@ The command will:
 - Save to `Journal/Calendar/YYYY-MM-DD.md` in Obsidian vault
 - Add appropriate tags for searchability
 
+## AI Prompt Rewriter Integration
+
+The repository includes a prompt rewriting feature that improves your prompts for better clarity and grammar using the [ai-rewriter](https://github.com/ccronca/ai-rewriter) service.
+
+### Setup ai-rewriter
+
+1. Clone and set up the ai-rewriter service:
+   ```bash
+   git clone https://github.com/ccronca/ai-rewriter.git
+   cd ai-rewriter
+   # Follow the setup instructions in the repository
+   ```
+
+2. Start the ai-rewriter service (default port: 8787):
+   ```bash
+   # The service should be running on http://127.0.0.1:8787
+   ```
+
+### Using the Prompt Rewriter
+
+Two ways to trigger prompt rewriting:
+
+1. **Using `#rw` prefix** - Automatic hook-based rewriting:
+   ```
+   #rw how I can make this project better?
+   ```
+
+2. **Using `/rw` command** - Explicit slash command:
+   ```
+   /rw how I can make this project better?
+   ```
+
+Both methods will:
+- Send your prompt to the ai-rewriter service
+- Show you the original and improved versions
+- Highlight key improvements (grammar, clarity, structure)
+- Respond to the improved prompt
+
+This feature helps you learn English by showing concrete examples of improvements.
+
 ## Manual Setup
 
 If you prefer to set up components individually, you can run scripts separately or manually symlink specific files.

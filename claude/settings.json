@@ -23,6 +23,7 @@
       "Bash(ls:*)",
       "Bash(cat:*)",
       "Bash(tail:*)",
+      "Bash(curl -s -X POST http://127.0.0.1:8787/rewrite:*)",
       "Read(~/.claude/commands/.internal/fetch-mr-reviews.md)",
       "Read(~/.claude/**)",
       "SlashCommand(/jira-journal:*)",
@@ -94,6 +95,11 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/capture-events-simple.py --event-type UserPromptSubmit"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/rewrite-prompt.py",
+            "statusMessage": "Improving prompt..."
           }
         ]
       }
