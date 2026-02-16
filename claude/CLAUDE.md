@@ -427,7 +427,40 @@ fi
 
 When executing Python commands (e.g., running tests, installing packages, executing scripts), follow these rules:
 
-### Automatic Virtual Environment Detection
+### Detect Package Manager First
+
+**IMPORTANT:** Before running any Python command, detect which package manager the project uses:
+
+1. **Check for `uv` usage** (priority check):
+   - Look for `uv.lock` file in the project root
+   - Or check if `pyproject.toml` exists with uv-specific configuration
+   - If found: **Use `uv` for all package operations**
+
+2. **Otherwise, use standard venv/pip**
+
+### Using `uv` for Package Management
+
+**If the project uses `uv` (has `uv.lock` file):**
+
+**Installing packages:**
+```bash
+uv add package-name
+```
+
+**Running commands:**
+```bash
+uv run pytest tests/
+uv run python script.py
+```
+
+**Syncing dependencies:**
+```bash
+uv sync
+```
+
+**DO NOT use `pip install` or `source .venv/bin/activate` in `uv` projects** - `uv` manages the virtual environment automatically.
+
+### Automatic Virtual Environment Detection (for non-uv projects)
 
 1. **Before running any Python command**, check if a `.venv` directory exists in the current project directory
 2. **If `.venv` exists:**
@@ -449,18 +482,27 @@ When executing Python commands (e.g., running tests, installing packages, execut
 
 ### Examples
 
-**Running tests with venv:**
+**For `uv` projects (has `uv.lock`):**
 ```bash
+# Installing packages
+uv add requests
+
+# Running tests
+uv run pytest tests/
+
+# Running scripts
+uv run python script.py
+```
+
+**For standard venv projects (no `uv.lock`):**
+```bash
+# Running tests
 source .venv/bin/activate && pytest tests/
-```
 
-**Installing packages with venv:**
-```bash
+# Installing packages
 source .venv/bin/activate && pip install requests
-```
 
-**Running Python scripts with venv:**
-```bash
+# Running scripts
 source .venv/bin/activate && python script.py
 ```
 
