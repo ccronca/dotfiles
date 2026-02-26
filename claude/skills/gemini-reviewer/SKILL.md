@@ -24,12 +24,16 @@ When this skill is invoked, you MUST:
    - Include upstream issues or comments
    - Include helper functions or related code
 
-3. **Execute Gemini review** using Bash tool with safety restrictions:
+3. **Execute Gemini review** using Bash tool with read-only security:
    ```bash
-   gemini --approval-mode plan -o text "You are an expert code reviewer. Review this [MR/PR/code] and provide detailed feedback on correctness, security, performance, code quality, and testing. Be specific and reference line numbers or code sections." < /tmp/gemini_context.txt
+   gemini --approval-mode plan -o text -p "You are an expert code reviewer. Review this [MR/PR/code] and provide detailed feedback on correctness, security, performance, code quality, and testing. Be specific and reference line numbers or code sections." < /tmp/gemini_context.txt
    ```
 
-   **SECURITY NOTE**: Uses `--approval-mode plan` (read-only mode) instead of `-y` (YOLO mode) to prevent Gemini from executing any tools. Gemini can only analyze the provided context and return text feedback.
+   **SECURITY NOTE**:
+   - `--approval-mode plan`: Read-only mode preventing all tool execution
+   - Gemini can only analyze the provided context and return text feedback
+   - No file system modifications, git operations, or shell commands possible
+   - Note: Docker `--sandbox` not used due to enterprise UID compatibility issues
 
 4. **Return the complete Gemini output** - do not summarize or filter
 
@@ -89,12 +93,10 @@ Provide specific, actionable feedback with line references.
 
 **Scenario:** /code-review command called with MR 44
 
-**Step 1:** Identify target
-- MR 44 mentioned in conversation
-- Recent `glab mr view 44` and `glab mr diff 44` calls
+Following the execution protocol above, here's a concrete example:
 
-**Step 2:** Prepare context file using Bash tool
 ```bash
+# Step 2: Prepare context file
 cat > /tmp/gemini_context.txt << 'EOF'
 Review GitLab Merge Request #44: "Tuning rag score thresholds"
 
@@ -107,21 +109,18 @@ Review GitLab Merge Request #44: "Tuning rag score thresholds"
 ## REVIEW FOCUS
 [Specific areas to examine]
 EOF
-```
 
-**Step 3:** Execute Gemini (read-only mode)
-```bash
-gemini --approval-mode plan -o text "You are an expert code reviewer. Review this merge request..." < /tmp/gemini_context.txt
+# Step 3: Execute Gemini in read-only plan mode
+gemini --approval-mode plan -o text -p "You are an expert code reviewer. Review this merge request and provide detailed feedback on correctness, security, performance, and code quality. Be specific and reference line numbers." < /tmp/gemini_context.txt
 ```
-
-**Step 4:** Return output
-Present the complete Gemini response without modification.
 
 ## Critical Rules
 
-- **ALWAYS use `--approval-mode plan`** (read-only mode) for safe, non-interactive execution - prevents tool execution
-- **NEVER use `-y`/YOLO mode** - this auto-approves dangerous tool executions (rm, git reset, etc.)
-- **ALWAYS use `-o text`** for clean text output
+- **ALWAYS use `--approval-mode plan`** - Read-only mode preventing all tool execution
+- **ALWAYS use `-p` flag** - Required for prompts when using stdin input
+- **NEVER use `-y`/YOLO mode** - Auto-approves dangerous operations (rm, git reset, etc.)
+- **ALWAYS use `-o text`** - Clean text output format
+- **DO NOT use `--sandbox`** - Has compatibility issues with enterprise UID ranges (4212687 > 60000)
 - **DO NOT** summarize or filter Gemini's output - return it verbatim
 - **DO gather sufficient context** - include diffs, descriptions, related code
 - **DO focus the prompt** - tell Gemini what to look for
