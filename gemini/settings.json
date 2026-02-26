@@ -1,3 +1,13 @@
 {
-  "contextFileName": "CLAUDE.md"
+  "context": {
+    "fileName": "CLAUDE.md"
+  },
+  "security": {
+    "auth": {
+      "selectedType": "gemini-api-key"
+    }
+  },
+  "experimental": {
+    "plan": true
+  }
 }

@@ -24,10 +24,12 @@ When this skill is invoked, you MUST:
    - Include upstream issues or comments
    - Include helper functions or related code
 
-3. **Execute Gemini review** using Bash tool:
+3. **Execute Gemini review** using Bash tool with safety restrictions:
    ```bash
-   gemini -y -o text "You are an expert code reviewer. Review this [MR/PR/code] and provide detailed feedback on correctness, security, performance, code quality, and testing. Be specific and reference line numbers or code sections." < /tmp/gemini_context.txt
+   gemini --approval-mode plan -o text "You are an expert code reviewer. Review this [MR/PR/code] and provide detailed feedback on correctness, security, performance, code quality, and testing. Be specific and reference line numbers or code sections." < /tmp/gemini_context.txt
    ```
+
+   **SECURITY NOTE**: Uses `--approval-mode plan` (read-only mode) instead of `-y` (YOLO mode) to prevent Gemini from executing any tools. Gemini can only analyze the provided context and return text feedback.
 
 4. **Return the complete Gemini output** - do not summarize or filter
 
@@ -107,9 +109,9 @@ Review GitLab Merge Request #44: "Tuning rag score thresholds"
 EOF
 ```
 
-**Step 3:** Execute Gemini
+**Step 3:** Execute Gemini (read-only mode)
 ```bash
-gemini -y -o text "You are an expert code reviewer. Review this merge request..." < /tmp/gemini_context.txt
+gemini --approval-mode plan -o text "You are an expert code reviewer. Review this merge request..." < /tmp/gemini_context.txt
 ```
 
 **Step 4:** Return output
@@ -117,7 +119,8 @@ Present the complete Gemini response without modification.
 
 ## Critical Rules
 
-- **ALWAYS use `-y` flag** (YOLO mode) for non-interactive execution
+- **ALWAYS use `--approval-mode plan`** (read-only mode) for safe, non-interactive execution - prevents tool execution
+- **NEVER use `-y`/YOLO mode** - this auto-approves dangerous tool executions (rm, git reset, etc.)
 - **ALWAYS use `-o text`** for clean text output
 - **DO NOT** summarize or filter Gemini's output - return it verbatim
 - **DO gather sufficient context** - include diffs, descriptions, related code
