@@ -34,3 +34,5 @@ plugins/*-cache.json
 !skills/
 !skills/*/
 !skills/*/**
+# But ignore node_modules in skills
+skills/*/node_modules/

@@ -1,0 +1,9 @@
+{
+  "name": "inbox-learner-tools",
+  "version": "1.0.0",
+  "description": "Tools for fetching JavaScript-rendered pages",
+  "private": true,
+  "dependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}
