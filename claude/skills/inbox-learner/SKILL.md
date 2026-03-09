@@ -95,13 +95,20 @@ After creating each entry:
 After successfully processing each URL:
 
 1. **Read Archive**: Get contents of `00_Inbox_Archive.md` (create if doesn't exist)
-2. **Append Entry**: Add to archive with format:
+2. **Append Entry**: Add to archive under the **current month heading** with format:
    ```markdown
    - [YYYY-MM-DD] [URL] → [[learning-entry-name]]
    ```
 3. **Remove from Inbox**: Delete the URL line from `00_Inbox.md`
 
-**Archive Structure** (example showing entries from different dates):
+**IMPORTANT - Monthly Grouping:**
+- Entries are grouped by **month name** (e.g., `### March`), NOT by day
+- Use heading format: `### Month Name` (e.g., `### March`, `### February`)
+- **NEVER create day-based headings** like `### 2026-03-04`
+- All entries from the same month go under the same month heading
+- The date in brackets `[YYYY-MM-DD]` provides the specific day information
+
+**Archive Structure** (example showing entries from different dates in the same month):
 ```markdown
 # Processed Inbox Items
 
@@ -111,6 +118,8 @@ Archive of URLs processed from the inbox with links to their learning entries.
 
 ### March
 - [2026-03-03] https://example.com/article → [[2026-03-03-topic-name]]
+- [2026-03-15] https://example.com/another → [[2026-03-15-another-topic]]
+- [2026-03-28] https://example.com/third → [[2026-03-28-third-topic]]
 
 ### February
 - [2026-02-26] https://example.com/other → [[2026-02-26-other-topic]]

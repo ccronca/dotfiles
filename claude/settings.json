@@ -1,9 +1,9 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "includeCoAuthoredBy": true,
   "permissions": {
-    "deny": [
-      "Bash(git subtree *)"
-    ],
     "allow": [
       "Bash(git log:*)",
       "Bash(git diff:*)",
@@ -36,6 +36,9 @@
       "mcp__mcp-obsidian-myjournal__obsidian_get_file_contents",
       "mcp__mcp-obsidian-myjournal__obsidian_get_periodic_note"
     ],
+    "deny": [
+      "Bash(git subtree *)"
+    ],
     "ask": [
       "Bash(sudo:*)",
       "Bash(git push:*)",
@@ -54,6 +57,7 @@
       "Bash(gh pr create:*)"
     ]
   },
+  "model": "claude-sonnet-4-6",
   "hooks": {
     "SessionStart": [
       {
