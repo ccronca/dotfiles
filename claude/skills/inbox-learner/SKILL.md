@@ -100,10 +100,14 @@ After successfully processing each URL:
    - [YYYY-MM-DD] [URL] → [[learning-entry-name]]
    ```
 3. **Remove from Inbox**: Delete the URL line from `00_Inbox.md`
+   - **Note**: Obsidian MCP tools don't support file overwrite
+   - **Workaround**: Read current inbox, filter out processed URLs, then use `obsidian_delete_file` to delete the old file and create a new one with cleaned content
+   - This ensures the inbox stays clean after processing
 
 **IMPORTANT - Monthly Grouping:**
 - Entries are grouped by **month name** (e.g., `### March`), NOT by day
 - Use heading format: `### Month Name` (e.g., `### March`, `### February`)
+- **Extract the month name from today's date**: If today is 2026-03-10, use `### March`
 - **NEVER create day-based headings** like `### 2026-03-04`
 - All entries from the same month go under the same month heading
 - The date in brackets `[YYYY-MM-DD]` provides the specific day information
@@ -194,6 +198,20 @@ After processing, provide:
 - If `Learning/` folder doesn't exist, create it first
 - If archive file doesn't exist, create it with proper structure
 
+### Inbox Cleanup Implementation
+
+**Obsidian MCP Limitation**: The available Obsidian MCP tools (`obsidian_append_content`, `obsidian_get_file_contents`, etc.) don't include a file overwrite capability.
+
+**Workaround for cleaning the inbox**:
+
+1. Read current `00_Inbox.md` content
+2. Parse and identify processed URL lines
+3. Create new content without processed URLs
+4. Delete the old file using `obsidian_delete_file`
+5. Create new file with cleaned content using the `Write` tool or recreate via append
+
+This ensures the inbox stays clean after each processing run.
+
 ### Important Notes
 
 - **Conciseness is key**: Don't replicate the full article, just capture the essence
@@ -202,5 +220,6 @@ After processing, provide:
 - **Connections**: The real value is in linking related concepts
 - **Audit trail**: Archive maintains history of learning journey
 - **Iterative**: The knowledge base grows more valuable over time
+- **File recreation**: Since Obsidian MCP can't overwrite files, delete and recreate when cleaning the inbox
 
 ---
