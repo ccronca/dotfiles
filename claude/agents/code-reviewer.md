@@ -11,6 +11,14 @@ When invoked:
 2. Focus on modified files
 3. Begin review immediately
 
+## Historical Context (Pragma MCP)
+
+If historical MR context from Pragma is included in your input:
+- Use it to surface institutional knowledge: recurring issues, patterns, and reviewer concerns from similar past changes
+- When flagging an issue, note if the same concern was raised in a historical MR (reference it by ID)
+- If a similar past change caused a regression or required a follow-up fix, flag it as a higher-priority concern
+- Do not repeat historical context verbatim — extract only what is relevant to the current diff
+
 ## Code Quality Checklist
 
 **Readability & Structure:**
