@@ -75,6 +75,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='code'
 fi
+KUBECTL_EDITOR='vim'
 
 python_venv() {
   local VENV_DIR=./.venv
