@@ -1,6 +1,12 @@
 {
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "DISABLE_TELEMETRY": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_BUG_COMMAND": "1",
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "OTEL_SDK_DISABLED": "true",
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
   },
   "includeCoAuthoredBy": true,
   "permissions": {
@@ -23,6 +29,10 @@
       "Bash(ls:*)",
       "Bash(cat:*)",
       "Bash(tail:*)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run python -m pytest:*)",
+      "Bash(uv run ruff check:*)",
+      "Bash(uv run python -m ruff check:*)",
       "Bash(curl -s -X POST http://127.0.0.1:8787/rewrite:*)",
       "Read(~/.claude/commands/.internal/fetch-mr-reviews.md)",
       "Read(~/.claude/**)",
@@ -57,7 +67,6 @@
       "Bash(gh pr create:*)"
     ]
   },
-  "model": "claude-sonnet-4-6",
   "hooks": {
     "SessionStart": [
       {
@@ -124,6 +133,10 @@
     "command": "bash $HOME/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
-    "superpowers@superpowers-marketplace": true
-  }
+    "superpowers@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {},
+  "alwaysThinkingEnabled": true,
+  "teammateMode": "tmux"
 }
