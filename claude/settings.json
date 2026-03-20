@@ -5,6 +5,7 @@
     "DISABLE_ERROR_REPORTING": "1",
     "DISABLE_BUG_COMMAND": "1",
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "OTEL_SDK_DISABLED": "true",
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
   },
@@ -47,7 +48,30 @@
       "mcp__mcp-obsidian-myjournal__obsidian_get_periodic_note"
     ],
     "deny": [
-      "Bash(git subtree *)"
+      "Bash(git subtree *)",
+      "Bash(rm -rf *)",
+      "Bash(rm -fr *)",
+      "Bash(mkfs *)",
+      "Bash(dd *)",
+      "Bash(wget *|bash*)",
+      "Bash(wget *| bash*)",
+
+      "Edit(~/.bashrc)",
+      "Edit(~/.zshrc)",
+      "Edit(~/.ssh/**)",
+
+      "Read(~/.ssh/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.azure/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.git-credentials)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.kube/**)",
+      "Read(~/.npmrc)",
+      "Read(~/.npm/**)",
+      "Read(~/.pypirc)",
+      "Read(~/.gem/credentials)"
     ],
     "ask": [
       "Bash(sudo:*)",
@@ -84,6 +108,10 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/capture-events-simple.py --event-type Stop"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/validate-completion.py"
           }
         ]
       }
@@ -138,5 +166,7 @@
   },
   "extraKnownMarketplaces": {},
   "alwaysThinkingEnabled": true,
+  "enableAllProjectMcpServers": false,
+  "cleanupPeriodDays": 90,
   "teammateMode": "tmux"
 }
