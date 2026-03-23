@@ -7,6 +7,9 @@
 # Context % uses Claude Code's pre-calculated remaining_percentage,
 # which accounts for compaction reserves. 100% = compaction fires.
 
+# Configuration
+SHOW_CACHE_PCT=false
+
 # Read stdin (Claude Code passes JSON data via stdin)
 stdin_data=$(cat)
 
@@ -162,7 +165,7 @@ if [ -n "$session_time" ]; then
 fi
 
 # Cache percentage (dimmed)
-if [ "$cache_pct" -gt 0 ] 2>/dev/null; then
+if [ "$SHOW_CACHE_PCT" = "true" ] && [ "$cache_pct" -gt 0 ] 2>/dev/null; then
     status_line="$status_line $(printf '%b %b↻%s%%%b' "$SEP" "$DIM" "$cache_pct" "$RESET")"
 fi
 
