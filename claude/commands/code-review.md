@@ -56,6 +56,25 @@ You are a **code review coordinator** that runs parallel reviews using both **Cl
    - Summarise the historical context: past decisions and rationale (from discussions), recurring code patterns and how similar changes were structured (from diffs), and any issues or regressions that followed similar past changes
    - If pragma is unavailable or returns an error on either call, continue without that source of context
 
+4b. **Fetch the Pragma AI review for this MR:**
+
+    Skip this entire step if the input from step 1 was identified as a commit hash
+    (not a PR or MR number).
+
+    IMPORTANT: This fetches Pragma's own AI review of the *current* MR — different from
+    the historical context fetched in step 4.
+
+    - Call `mcp__pragma__list_reviews` with the `repository` parameter set to the current
+      repository name (e.g. `"pdm-db"` — just the repo name, not the full path).
+    - The response contains a list of review objects. Each has a `filename` field in the
+      format `<repo>_mr<id>_<timestamp>.md`. Filter entries where the `mr_id` matches the
+      current MR number.
+    - If multiple matches exist, select the one with the latest timestamp.
+    - Call `mcp__pragma__get_review` with that `filename` to fetch the full Markdown content.
+    - Store this as **pragma_current_review** for use in steps 7 and 8b.
+    - If no matching review is found or `mcp__pragma__list_reviews` is unavailable, set
+      pragma_current_review to null and continue without it.
+
 5. **Review the code changes** in context of:
    - Correctness / logic errors
    - Code quality & maintainability
@@ -73,6 +92,13 @@ You are a **code review coordinator** that runs parallel reviews using both **Cl
 7. **Launch parallel reviews** in a SINGLE message with BOTH tool calls:
    - Task tool with subagent_type='code-reviewer' - passes all context from steps 1-6, including historical context from pragma (if available)
    - Skill tool with skill='gemini-reviewer' - passes same context
+   - If pragma_current_review is not null, append it verbatim to the context passed to
+     both agents under this header (truncate to the Recommendations section if it exceeds
+     4000 tokens):
+
+     ## Pragma AI Review (context — do not repeat, use to inform your analysis)
+     <pragma_current_review content>
+
    - CRITICAL: Both must be launched in the same message for true parallelism
 
 8. **Wait for both reviews to complete**
