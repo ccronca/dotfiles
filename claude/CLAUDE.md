@@ -770,6 +770,32 @@ rm /tmp/jira_body.txt
 
 ---
 
+## Public Repository Safety
+
+> **CRITICAL — Run `/public-repo-check` before every push to a public repository.**
+> This check is mandatory and non-negotiable. Do not skip it.
+
+Before pushing to any public repository (GitHub or other public host), always invoke the `/public-repo-check` skill. It scans staged and tracked files for sensitive or internal information that must never be exposed publicly.
+
+### What the check covers
+
+* **Internal hostnames** — corporate GitLab instances, internal domains
+* **Real usernames or email addresses** — your own or colleagues'
+* **Internal repository paths** — organisation/group names used as hard-coded values or examples
+* **API keys, tokens, or passwords** — even in comments, docstrings, or example configs
+* **Local machine paths** — absolute paths like `/home/username/...`
+* **Internal IDs** — ticket numbers or specific MR/PR IDs hard-coded as examples
+
+### How to fix findings
+
+* Replace internal hostnames → `gitlab.example.com`
+* Replace real usernames → `your-username` or `<your-name>`
+* Replace internal repo paths → `my-group/my-repo`
+* Replace hard-coded IDs → small round numbers like `42`
+* Replace local absolute paths → `<path-to-project>` or relative paths
+
+---
+
 ## Work-Specific Guidelines
 
 For work-specific or project-specific configuration, see:

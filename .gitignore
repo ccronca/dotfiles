@@ -2,3 +2,6 @@
 claude/plugins/blocklist.json
 claude/plugins/installed_plugins.json
 claude/plugins/known_marketplaces.json
+
+# Superpowers design docs (working documents, not for version control)
+docs/superpowers/
