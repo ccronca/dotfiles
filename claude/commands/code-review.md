@@ -103,7 +103,37 @@ You are a **code review coordinator** that runs parallel reviews using both **Cl
 
 8. **Wait for both reviews to complete**
 
-9. For each issue found by either reviewer, launch a parallel validation agent that takes the PR and issue description, and returns a score to indicate the agent's level of confidence for whether the issue is real or false positive. To do that, the agent should score each issue on a scale from 0-100
+8b. **Deduplicate findings:**
+
+    Use the Task tool (subagent_type='general-purpose', model='haiku') to dispatch a
+    deduplication agent. Pass the following as the agent prompt:
+
+    > You are a deduplication agent. You will receive findings from two AI reviewers
+    > (Claude and Gemini) and optionally a Pragma AI review.
+    >
+    > Inputs:
+    > - Claude code-reviewer findings: [paste full findings list]
+    > - Gemini reviewer findings: [paste full findings list]
+    > - Pragma AI review (if available): [paste pragma_current_review content or "N/A"]
+    >
+    > Your task:
+    > 1. Identify findings across all sources that describe the same root cause in the
+    >    same file. Two findings are duplicates even if they use different wording or
+    >    cite slightly different line numbers, as long as they refer to the same issue.
+    > 2. For each group of duplicates, keep the single most specific description —
+    >    prefer descriptions that include a concrete file path, line number, or code
+    >    snippet over vague descriptions.
+    > 3. Tag each surviving finding with its source(s): [claude], [gemini], [pragma],
+    >    or combinations such as [claude][gemini].
+    > 4. Return a flat numbered list of deduplicated findings, each with its source tag.
+    >
+    > If you cannot confidently determine whether two findings are duplicates, keep both.
+    > If the findings list is empty, return an empty list.
+
+    Use the deduplicated list as input to step 9. If the deduplication agent returns an
+    empty list, fall back to the original combined findings from step 7.
+
+9. For each issue in the deduplicated findings list from step 8b (or the original combined findings if 8b returned empty), launch a parallel validation agent that takes the PR and issue description, and returns a score to indicate the agent's level of confidence for whether the issue is real or false positive. To do that, the agent should score each issue on a scale from 0-100
 
 10. Filter out any issues with a score less than 30. If there are no issues that meet this criteria, do not proceed.
 
@@ -141,6 +171,10 @@ You are a **code review coordinator** that runs parallel reviews using both **Cl
 - **Moderate/Minor Issues:** Lower priority improvements from both reviewers
 - **Unique Insights:** Issues found by only one reviewer
 - **Recommendations:** Synthesized recommendations from both perspectives
+
+**Note on source tags:** Each finding carries one or more source tags — [claude], [gemini],
+[pragma], or combinations such as [claude][gemini]. Findings tagged with multiple sources
+indicate higher confidence, as independent reviewers reached the same conclusion.
 
 **Notes:**
 - The MR/PR being reviewed lives in GitLab/GitHub — always fetch it using `glab`/`gh` CLI tools, never from pragma
