@@ -1,6 +1,17 @@
 {
   "_comment": "Only one vault can be configured at a time due to a bug in mcp-obsidian where all instances connect to port 27124 regardless of OBSIDIAN_PORT setting. See: https://github.com/MarkusPfundstein/mcp-obsidian/pull/89",
   "mcpServers": {
+    "pragma": {
+      "type": "stdio",
+      "command": "bash",
+      "args": [
+        "-c",
+        "exec uv run --project \"$PRAGMA_PROJECT_DIR\" python \"$PRAGMA_PROJECT_DIR/src/mcp_server.py\""
+      ],
+      "env": {
+        "PRAGMA_PROJECT_DIR": "${PRAGMA_PROJECT_DIR}"
+      }
+    },
     "mcp-obsidian-myjournal": {
       "type": "stdio",
       "command": "uvx",
