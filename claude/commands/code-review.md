@@ -1,6 +1,6 @@
 ---
 description: "Perform a code review for a PR, MR, or commit, including description, comments, and branch context"
-allowed-tools: Bash(git:*), Bash(gh:*), Bash(glab:*), Read, Grep, Task, Skill, mcp__pragma__search, mcp__pragma__get_mr
+allowed-tools: Bash(git:*), Bash(gh:*), Bash(glab:*), Read, Grep, Task, Skill, mcp__pragma__search, mcp__pragma__get_mr, mcp__pragma__list_reviews, mcp__pragma__get_review
 ---
 
 # Task
