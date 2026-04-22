@@ -16,24 +16,34 @@ Fetch and analyse Pragma's AI-generated review for a GitLab MR.
    - Otherwise, run `glab mr view` and parse the `IID:` field from the output.
    - If both fail, ask the user: "Which MR number would you like to review?"
 
-2. **Determine the repository name:**
-   - Run `glab mr view` (or reuse output from step 1) and parse the `Project:` or
+2. **Ensure the working tree reflects the MR source branch:**
+   - Run `glab mr view <MR_NUMBER>` and parse the `Source Branch:` field → `<mr_branch>`.
+   - Run `git rev-parse --abbrev-ref HEAD` → `<current_branch>`.
+   - If `<current_branch>` equals `<mr_branch>`, continue to step 3.
+   - Otherwise:
+     - Record `<current_branch>` so it can be restored later.
+     - Inform the user: "Switching to `<mr_branch>` to analyse MR code accurately."
+     - Run `glab mr checkout <MR_NUMBER>` to switch to the MR branch.
+     - Set a flag `BRANCH_SWITCHED=true`.
+
+3. **Determine the repository name:**
+   - Run `glab mr view <MR_NUMBER>` (reuse output from step 2) and parse the `Project:` or
      `Web URL` field to extract the repository name (e.g. `pdm-db`).
    - Use just the short repository name (last path segment), not the full group path.
 
-3. **Find the most recent Pragma review for this MR:**
-   - Call `mcp__pragma__list_reviews` with `repository` set to the repo name from step 2.
+4. **Find the most recent Pragma review for this MR:**
+   - Call `mcp__pragma__list_reviews` with `repository` set to the repo name from step 3.
    - Filter returned entries where the filename contains `_mr<MR_NUMBER>_`.
    - If multiple matches exist, select the one with the latest timestamp (the timestamp
      appears in the filename as `YYYYMMDD_HHMMSS`).
    - If no matching review is found, output:
      > "No Pragma review found for MR !<number> in repository <repo>."
-     and stop.
+     restore the original branch (step 8) and stop.
 
-4. **Fetch the full review content:**
-   - Call `mcp__pragma__get_review` with the filename selected in step 3.
+5. **Fetch the full review content:**
+   - Call `mcp__pragma__get_review` with the filename selected in step 4.
 
-5. **Output Section B — High-value findings:**
+6. **Output Section B — High-value findings:**
 
    Present a prioritised list of findings from the Pragma review that meet ALL of:
    - Blocking, critical, or high-severity (explicitly stated in Pragma's output, or
@@ -53,7 +63,7 @@ Fetch and analyse Pragma's AI-generated review for a GitLab MR.
 
    If no findings meet the criteria, state: "No high-value findings identified."
 
-6. **Output Section C — Meta-critique:**
+7. **Output Section C — Meta-critique:**
 
    Assess the quality of the Pragma review itself across four dimensions:
 
@@ -65,6 +75,10 @@ Fetch and analyse Pragma's AI-generated review for a GitLab MR.
    **False positives:** <List any findings that appear incorrect or unsubstantiated>
    **Gaps:** <Important aspects of the diff that Pragma missed entirely>
    ```
+
+8. **Restore original branch (if switched):**
+   - If `BRANCH_SWITCHED=true`, run `git checkout <current_branch>`.
+   - Inform the user: "Restored branch to `<current_branch>`."
 
 ## Notes
 
