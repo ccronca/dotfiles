@@ -105,3 +105,6 @@ fi
 claude() {
   SHELL=/bin/bash command claude "$@"
 }
+
+# Added by codebase-memory-mcp install
+export PATH="/home/ccota/.local/bin:$PATH"

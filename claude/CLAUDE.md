@@ -801,3 +801,14 @@ Before pushing to any public repository (GitHub or other public host), always in
 For work-specific or project-specific configuration, see:
 
 @~/.claude/CLAUDE.local.md
+
+---
+
+## Codebase Memory (codebase-memory-mcp)
+
+When this MCP server is available, **prefer graph tools over grep/Explore for structural code questions**.
+Graph queries return precise results in a single tool call (~500 tokens) vs file-by-file exploration (~80K tokens).
+
+Use grep/Glob for text search (string literals, error messages, config values) - the graph doesn't index text content.
+For detailed tool reference, decision matrix, and usage patterns, invoke the `codebase-memory` skill.
+

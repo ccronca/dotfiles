@@ -1,13 +1,31 @@
 {
-  "context": {
-    "fileName": "CLAUDE.md"
-  },
-  "security": {
-    "auth": {
-      "selectedType": "gemini-api-key"
+    "context": {
+        "fileName": "CLAUDE.md"
+    },
+    "security": {
+        "auth": {
+            "selectedType": "gemini-api-key"
+        }
+    },
+    "experimental": {
+        "plan": true
+    },
+    "mcpServers": {
+        "codebase-memory-mcp": {
+            "command": "/home/ccota/.local/bin/codebase-memory-mcp"
+        }
+    },
+    "hooks": {
+        "BeforeTool": [
+            {
+                "matcher": "google_search|read_file|grep_search",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "echo 'Reminder: prefer codebase-memory-mcp search_graph/trace_path/get_code_snippet over grep/file search for code discovery.' >&2"
+                    }
+                ]
+            }
+        ]
     }
-  },
-  "experimental": {
-    "plan": true
-  }
 }
