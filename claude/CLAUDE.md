@@ -262,87 +262,13 @@ validation before processing.
 
 ### Python: Always Follow the Pythonic Way
 
-**IMPORTANT:** When writing or modifying Python code, always use Pythonic patterns and idioms. Code should be clear, explicit, and follow Python's philosophy.
+When writing or modifying Python code, use Pythonic patterns:
 
-**Key Pythonic Patterns:**
+- **Patterns:** for-else instead of flags; context managers (`with`); list/dict comprehensions; truthiness checks (`if items:` not `if len(items) > 0:`); `is`/`is not` for None; `enumerate()`; `zip()`; `dict.get()` with defaults; f-strings; type hints
+- **Quality:** null safety before attribute access; prefer `any()`/`all()`/`sum()` over manual loops; generators for large datasets
+- **Linting:** run `python3 -m flake8` after writing Python; fix F401 (unused imports), E722 (bare except — always specify exception type), missing `encoding='utf-8'` in file opens
 
-1. **for-else loops** instead of flag variables
-   ```python
-   # GOOD - Pythonic
-   for item in items:
-       if condition(item):
-           break
-   else:
-       handle_not_found()
-   ```
-
-2. **Context managers** for resource management (`with` statements)
-
-3. **List/dict comprehensions** for transformations
-
-4. **Truthiness checks** instead of explicit comparisons
-   ```python
-   # GOOD: if items:
-   # BAD: if len(items) > 0:
-   ```
-
-5. **None checks** using `is`/`is not` (not `==`/`!=`)
-
-6. **enumerate()** instead of manual indexing
-
-7. **zip()** for parallel iteration
-
-8. **Dictionary get()** with defaults instead of key checks
-
-9. **F-strings** for formatting (Python 3.6+)
-
-10. **Type hints** for function signatures
-
-**Code Quality:**
-* Always check for None before accessing attributes (null safety)
-* Use `functools` decorators (`@lru_cache`, `@cache`) for memoization
-* Prefer built-in functions like `any()`, `all()`, `sum()` over manual loops
-* Use generator expressions for memory efficiency with large datasets
-* Avoid obvious comments that merely repeat what the code does - comments should explain why, not what
-
-**Code Linting:**
-
-When writing or modifying Python code, always run basic linting checks to ensure code quality:
-
-1. **Run flake8** (or available linter) after writing Python code:
-   ```bash
-   python3 -m flake8 script.py
-   ```
-
-2. **Fix critical issues immediately:**
-   - **Unused imports** (F401): Remove any imported modules that aren't used
-   - **Bare except clauses** (E722): Always specify exception types
-     ```python
-     # BAD
-     except:
-         pass
-
-     # GOOD
-     except (ValueError, TypeError, IOError):
-         pass
-     ```
-   - **Missing encoding in file operations**: Always specify `encoding='utf-8'` for text files
-     ```python
-     # BAD
-     with open(file_path, 'r') as f:
-
-     # GOOD
-     with open(file_path, 'r', encoding='utf-8') as f:
-     ```
-
-3. **Line length warnings** (E501): Address if reasonable, but can be ignored for URLs or long strings
-
-4. **When to run linting:**
-   - After creating a new Python file
-   - After modifying existing Python code
-   - Before committing Python changes
-
-**References:** [PEP 8](https://peps.python.org/pep-0008/), [PEP 20 - The Zen of Python](https://peps.python.org/pep-0020/)
+**References:** [PEP 8](https://peps.python.org/pep-0008/), [PEP 20](https://peps.python.org/pep-0020/)
 
 ### Bash: Error Handling and Script Safety
 
