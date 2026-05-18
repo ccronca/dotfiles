@@ -1,227 +1,235 @@
 {
-    "cleanupPeriodDays": 90,
-    "env": {
-        "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
-        "DISABLE_TELEMETRY": "1",
-        "DISABLE_ERROR_REPORTING": "1",
-        "DISABLE_BUG_COMMAND": "1",
-        "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
-        "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
-        "OTEL_SDK_DISABLED": "true",
-        "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
-        "MAX_THINKING_TOKENS": "10000",
-        "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-6",
-        "ENABLE_PROMPT_CACHING_1H": "true"
-    },
-    "includeCoAuthoredBy": true,
-    "permissions": {
-        "allow": [
-            "Bash(git log:*)",
-            "Bash(git diff:*)",
-            "Skill(Journaling)",
-            "Bash(jira issue view:*)",
-            "Bash(jira issue list:*)",
-            "Bash(gcalcli agenda:*)",
-            "Bash(gcalcli calw:*)",
-            "Bash(gcalcli calm:*)",
-            "Bash(gcalcli search:*)",
-            "Bash(gcalcli list:*)",
-            "Bash(glab mr view:*)",
-            "Bash(glab mr list:*)",
-            "Bash(glab mr diff:*)",
-            "Bash(gh pr view:*)",
-            "Bash(tree:*)",
-            "Bash(ls:*)",
-            "Bash(cat:*)",
-            "Bash(tail:*)",
-            "Bash(uv run pytest:*)",
-            "Bash(uv run python -m pytest:*)",
-            "Bash(uv run ruff check:*)",
-            "Bash(uv run python -m ruff check:*)",
-            "Bash(curl -s -X POST http://127.0.0.1:8787/rewrite:*)",
-            "Read(~/.claude/commands/.internal/fetch-mr-reviews.md)",
-            "Read(~/.claude/**)",
-            "SlashCommand(/jira-journal:*)",
-            "Skill(claude-docs)",
-            "Bash(jira me)",
-            "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_dir",
-            "mcp__mcp-obsidian-myjournal__obsidian_append_content",
-            "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_vault",
-            "mcp__mcp-obsidian-myjournal__obsidian_batch_get_file_contents",
-            "mcp__mcp-obsidian-myjournal__obsidian_get_file_contents",
-            "mcp__mcp-obsidian-myjournal__obsidian_get_periodic_note"
-        ],
-        "deny": [
-            "Bash(git subtree *)",
-            "Bash(rm -rf *)",
-            "Bash(rm -fr *)",
-            "Bash(mkfs *)",
-            "Bash(dd *)",
-            "Bash(wget *|bash*)",
-            "Bash(wget *| bash*)",
-            "Edit(~/.bashrc)",
-            "Edit(~/.zshrc)",
-            "Edit(~/.ssh/**)",
-            "Read(~/.ssh/**)",
-            "Read(~/.gnupg/**)",
-            "Read(~/.aws/**)",
-            "Read(~/.azure/**)",
-            "Read(~/.config/gh/**)",
-            "Read(~/.git-credentials)",
-            "Read(~/.docker/config.json)",
-            "Read(~/.kube/**)",
-            "Read(~/.npmrc)",
-            "Read(~/.npm/**)",
-            "Read(~/.pypirc)",
-            "Read(~/.gem/credentials)"
-        ],
-        "ask": [
-            "Bash(sudo:*)",
-            "Bash(git push:*)",
-            "Bash(git reset:*)",
-            "Bash(git checkout:*)",
-            "Bash(git branch -D:*)",
-            "Bash(pip install:*)",
-            "Bash(npm install:*)",
-            "Bash(yarn add:*)",
-            "Bash(rm:*)",
-            "Bash(chmod:*)",
-            "Bash(chown:*)",
-            "Bash(jira issue create:*)",
-            "Bash(jira issue edit:*)",
-            "Bash(glab mr create:*)",
-            "Bash(gh pr create:*)"
+  "cleanupPeriodDays": 90,
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "DISABLE_TELEMETRY": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_BUG_COMMAND": "1",
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "OTEL_SDK_DISABLED": "true",
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
+    "MAX_THINKING_TOKENS": "10000",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-6",
+    "ENABLE_PROMPT_CACHING_1H": "true"
+  },
+  "includeCoAuthoredBy": true,
+  "permissions": {
+    "allow": [
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Skill(Journaling)",
+      "Bash(jira issue view:*)",
+      "Bash(jira issue list:*)",
+      "Bash(gcalcli agenda:*)",
+      "Bash(gcalcli calw:*)",
+      "Bash(gcalcli calm:*)",
+      "Bash(gcalcli search:*)",
+      "Bash(gcalcli list:*)",
+      "Bash(glab mr view:*)",
+      "Bash(glab mr list:*)",
+      "Bash(glab mr diff:*)",
+      "Bash(gh pr view:*)",
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(tail:*)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run python -m pytest:*)",
+      "Bash(uv run ruff check:*)",
+      "Bash(uv run python -m ruff check:*)",
+      "Bash(curl -s -X POST http://127.0.0.1:8787/rewrite:*)",
+      "Read(~/.claude/commands/.internal/fetch-mr-reviews.md)",
+      "Read(~/.claude/**)",
+      "SlashCommand(/jira-journal:*)",
+      "Skill(claude-docs)",
+      "Bash(jira me)",
+      "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_dir",
+      "mcp__mcp-obsidian-myjournal__obsidian_append_content",
+      "mcp__mcp-obsidian-myjournal__obsidian_list_files_in_vault",
+      "mcp__mcp-obsidian-myjournal__obsidian_batch_get_file_contents",
+      "mcp__mcp-obsidian-myjournal__obsidian_get_file_contents",
+      "mcp__mcp-obsidian-myjournal__obsidian_get_periodic_note"
+    ],
+    "deny": [
+      "Bash(git subtree *)",
+      "Bash(rm -rf *)",
+      "Bash(rm -fr *)",
+      "Bash(mkfs *)",
+      "Bash(dd *)",
+      "Bash(wget *|bash*)",
+      "Bash(wget *| bash*)",
+      "Edit(~/.bashrc)",
+      "Edit(~/.zshrc)",
+      "Edit(~/.ssh/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.azure/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.git-credentials)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.kube/**)",
+      "Read(~/.npmrc)",
+      "Read(~/.npm/**)",
+      "Read(~/.pypirc)",
+      "Read(~/.gem/credentials)"
+    ],
+    "ask": [
+      "Bash(sudo:*)",
+      "Bash(git push:*)",
+      "Bash(git reset:*)",
+      "Bash(git checkout:*)",
+      "Bash(git branch -D:*)",
+      "Bash(pip install:*)",
+      "Bash(npm install:*)",
+      "Bash(yarn add:*)",
+      "Bash(rm:*)",
+      "Bash(chmod:*)",
+      "Bash(chown:*)",
+      "Bash(jira issue create:*)",
+      "Bash(jira issue edit:*)",
+      "Bash(glab mr create:*)",
+      "Bash(gh pr create:*)"
+    ]
+  },
+  "model": "claude-opus-4-6[1m]",
+  "enableAllProjectMcpServers": false,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/capture-events-simple.py --event-type SessionStart"
+          }
         ]
-    },
-    "model": "claude-opus-4-6[1m]",
-    "enableAllProjectMcpServers": false,
-    "hooks": {
-        "SessionStart": [
-            {
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/capture-events-simple.py --event-type SessionStart"
-                    }
-                ]
-            },
-            {
-                "matcher": "startup",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/cbm-session-reminder"
-                    }
-                ]
-            },
-            {
-                "matcher": "resume",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/cbm-session-reminder"
-                    }
-                ]
-            },
-            {
-                "matcher": "clear",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/cbm-session-reminder"
-                    }
-                ]
-            },
-            {
-                "matcher": "compact",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/cbm-session-reminder"
-                    }
-                ]
-            }
-        ],
-        "Stop": [
-            {
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/capture-events-simple.py --event-type Stop"
-                    },
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/validate-completion.py"
-                    }
-                ]
-            }
-        ],
-        "SessionEnd": [
-            {
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/capture-events-simple.py --event-type SessionEnd"
-                    },
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/auto-journal-on-exit.py"
-                    }
-                ]
-            }
-        ],
-        "UserPromptSubmit": [
-            {
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/capture-events-simple.py --event-type UserPromptSubmit"
-                    },
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/rewrite-prompt.py",
-                        "statusMessage": "Improving prompt..."
-                    }
-                ]
-            }
-        ],
-        "PreCompact": [
-            {
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/capture-events-simple.py --event-type PreCompact"
-                    }
-                ]
-            }
-        ],
-        "PreToolUse": [
-            {
-                "matcher": "Grep|Glob|Read|Search",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/cbm-code-discovery-gate"
-                    }
-                ]
-            }
+      },
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/cbm-session-reminder"
+          }
         ]
-    },
-    "statusLine": {
-        "type": "command",
-        "command": "bash $HOME/.claude/statusline-command.sh"
-    },
-    "enabledPlugins": {
-        "superpowers@claude-plugins-official": true,
-        "code-simplifier@claude-plugins-official": true,
-        "claude-code-setup@claude-plugins-official": true,
-        "security-guidance@claude-plugins-official": true,
-        "context7@claude-plugins-official": true,
-        "skill-creator@claude-plugins-official": true
-    },
-    "extraKnownMarketplaces": {},
-    "alwaysThinkingEnabled": true,
-    "effortLevel": "medium",
-    "advisorModel": "opus",
-    "teammateMode": "tmux"
+      },
+      {
+        "matcher": "resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/cbm-session-reminder"
+          }
+        ]
+      },
+      {
+        "matcher": "clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/cbm-session-reminder"
+          }
+        ]
+      },
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/cbm-session-reminder"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/capture-events-simple.py --event-type Stop"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/validate-completion.py"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/capture-events-simple.py --event-type SessionEnd"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/auto-journal-on-exit.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/capture-events-simple.py --event-type UserPromptSubmit"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/rewrite-prompt.py",
+            "statusMessage": "Improving prompt..."
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/capture-events-simple.py --event-type PreCompact"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Grep|Glob|Read|Search",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/cbm-code-discovery-gate"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash $HOME/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "caveman@caveman": true
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    }
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "medium",
+  "advisorModel": "opus",
+  "teammateMode": "tmux"
 }
