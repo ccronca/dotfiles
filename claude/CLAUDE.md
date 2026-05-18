@@ -265,8 +265,9 @@ validation before processing.
 When writing or modifying Python code, use Pythonic patterns:
 
 - **Patterns:** for-else instead of flags; context managers (`with`); list/dict comprehensions; truthiness checks (`if items:` not `if len(items) > 0:`); `is`/`is not` for None; `enumerate()`; `zip()`; `dict.get()` with defaults; f-strings; type hints
-- **Quality:** null safety before attribute access; prefer `any()`/`all()`/`sum()` over manual loops; generators for large datasets
-- **Linting:** run `python3 -m flake8` after writing Python; fix F401 (unused imports), E722 (bare except — always specify exception type), missing `encoding='utf-8'` in file opens
+- **Quality:** null safety before attribute access; prefer `any()`/`all()`/`sum()` over manual loops; generators for large datasets; use `@lru_cache`/`@cache` for memoization
+- **Linting:** run `python3 -m flake8` (or available linter) after writing Python; fix F401 (unused imports), E722 (bare except — always specify exception type), missing `encoding='utf-8'` in file opens; E501 line-length is a soft rule — ignore for URLs and long strings
+- **Comments:** explain *why*, not *what*; avoid comments that merely restate the code
 
 **References:** [PEP 8](https://peps.python.org/pep-0008/), [PEP 20](https://peps.python.org/pep-0020/)
 
