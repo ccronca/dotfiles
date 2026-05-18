@@ -107,4 +107,4 @@ claude() {
 }
 
 # Added by codebase-memory-mcp install
-export PATH="/home/ccota/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
