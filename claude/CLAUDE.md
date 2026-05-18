@@ -273,10 +273,6 @@ When writing or modifying Python code, use Pythonic patterns:
 
 ### Bash: Error Handling and Script Safety
 
-**IMPORTANT:** When writing or modifying Bash scripts, always include strict error handling at the beginning of the script.
-
-**Mandatory Error Handling:**
-
 Every Bash script must start with:
 
 ```bash
@@ -284,69 +280,8 @@ Every Bash script must start with:
 set -euo pipefail
 ```
 
-**What each flag does:**
-
-* `set -e`: Exit immediately if any command exits with a non-zero status (fail fast)
-* `set -u`: Treat unset variables as an error and exit immediately
-* `set -o pipefail`: Return the exit status of the last command in a pipeline that failed (not just the last command)
-
-**Why this matters:**
-
-* **Prevents silent failures:** Without these flags, scripts can continue running after errors, leading to data corruption or incorrect state
-* **Catches typos:** Unset variables will cause immediate failure instead of being treated as empty strings
-* **Pipeline safety:** Ensures errors in the middle of a pipeline are not ignored
-
-**Debug Mode:**
-
-For debugging purposes, you can temporarily add the `-x` flag:
-
-```bash
-#!/usr/bin/env bash
-set -euxo pipefail  # Added -x for debugging
-```
-
-**CRITICAL WARNING about debug mode:**
-* **NEVER leave `set -x` enabled in production scripts**
-* The `-x` flag prints every command before execution, which **can leak sensitive data** such as:
-  * Passwords and API keys passed as variables
-  * Database connection strings
-  * Authentication tokens
-  * Private file contents
-* **Only use `set -x` during development/debugging**
-* **Always remove it before committing to production**
-
-**Example:**
-
-```bash
-#!/usr/bin/env bash
-set -euo pipefail
-
-# Script will exit immediately if:
-# - Any command fails (set -e)
-# - An undefined variable is used (set -u)
-# - Any command in a pipeline fails (set -o pipefail)
-
-DATABASE_URL="${DATABASE_URL}"  # Will fail if not set (set -u)
-psql "${DATABASE_URL}" < schema.sql  # Will fail if psql fails (set -e)
-```
-
-**Exceptions:**
-
-If you need to handle errors explicitly in specific cases, you can temporarily disable error handling:
-
-```bash
-set -euo pipefail
-
-# Temporarily allow a command to fail
-set +e
-some_command_that_might_fail
-exit_code=$?
-set -e
-
-if [ $exit_code -ne 0 ]; then
-    echo "Command failed as expected"
-fi
-```
+- **Never leave `set -x` in production** — it prints every command and leaks secrets (passwords, tokens, connection strings)
+- **Intentional failures:** `set +e` → run command → capture `$?` → `set -e` → handle exit code
 
 ---
 
