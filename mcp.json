@@ -12,6 +12,16 @@
         "PRAGMA_PROJECT_DIR": "${PRAGMA_PROJECT_DIR}"
       }
     },
+    "Atlassian-Rovo-MCP": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote@latest",
+        "https://mcp.atlassian.com/v1/mcp/authv2"
+      ],
+      "env": {}
+    },
     "mcp-obsidian-myjournal": {
       "type": "stdio",
       "command": "uvx",
