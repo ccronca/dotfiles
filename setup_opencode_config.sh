@@ -1,38 +1,27 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DOTFILES_OPENCODE="$HOME/dotfiles/opencode"
-OPENCODE_DIR="$HOME/.config/opencode"
+SOURCE_DIR="$HOME/dotfiles/opencode"
+TARGET_LINK="$HOME/.config/.opencode"
+TARGET_PARENT_DIR="$HOME/.config"
 
-CONFIG_FILES=(
-    "opencode.jsonc"
-)
+echo "Setting up opencode configuration symlink..."
+mkdir -p "$TARGET_PARENT_DIR"
 
-echo "Setting up opencode configuration symlinks..."
+# If the target exists and is not a symlink (i.e., it's a real directory), back it up
+if [ -e "$TARGET_LINK" ] && [ ! -L "$TARGET_LINK" ]; then
+    echo "Backing up existing $TARGET_LINK to $TARGET_LINK.backup"
+    mv "$TARGET_LINK" "$TARGET_LINK.backup"
+fi
 
-mkdir -p "$OPENCODE_DIR"
+# Remove the target if it is a symlink, to ensure we can create a new one
+[ -L "$TARGET_LINK" ] && rm "$TARGET_LINK"
 
-for file in "${CONFIG_FILES[@]}"; do
-    SOURCE="$DOTFILES_OPENCODE/$file"
-    TARGET="$OPENCODE_DIR/$file"
-
-    if [ -e "$SOURCE" ]; then
-        if [ -e "$TARGET" ] && [ ! -L "$TARGET" ]; then
-            echo "Backing up existing $file to $file.backup"
-            mv "$TARGET" "$TARGET.backup"
-        fi
-
-        [ -L "$TARGET" ] && rm "$TARGET"
-
-        echo "Symlinking $file"
-        ln -s "$SOURCE" "$TARGET"
-    else
-        echo "Warning: $SOURCE not found, skipping"
-    fi
-done
+echo "Symlinking $SOURCE_DIR to $TARGET_LINK"
+ln -s "$SOURCE_DIR" "$TARGET_LINK"
 
 echo ""
 echo "opencode configuration setup complete!"
 echo ""
-echo "Symlinked files:"
-find "$OPENCODE_DIR" -maxdepth 1 -type l -lname "*$DOTFILES_OPENCODE*" -ls
+echo "Symlink created:"
+ls -ld "$TARGET_LINK"

@@ -1,0 +1,76 @@
+{
+  "version": 2,
+  "plugins": {
+    "code-simplifier@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/code-simplifier/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-04-22T05:47:10.465Z",
+        "lastUpdated": "2026-04-22T05:47:10.465Z",
+        "gitCommitSha": "cf62a6c02dc03db88da8eb7c61bdb9fd88da6326"
+      }
+    ],
+    "claude-code-setup@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/claude-code-setup/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-04-22T05:47:10.465Z",
+        "lastUpdated": "2026-04-22T05:47:10.465Z",
+        "gitCommitSha": "cf62a6c02dc03db88da8eb7c61bdb9fd88da6326"
+      }
+    ],
+    "security-guidance@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/security-guidance/cf62a6c02dc0",
+        "version": "cf62a6c02dc0",
+        "installedAt": "2026-04-22T05:47:10.465Z",
+        "lastUpdated": "2026-04-22T05:47:10.465Z",
+        "gitCommitSha": "cf62a6c02dc03db88da8eb7c61bdb9fd88da6326"
+      }
+    ],
+    "context7@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/context7/cf62a6c02dc0",
+        "version": "cf62a6c02dc0",
+        "installedAt": "2026-04-22T05:47:10.465Z",
+        "lastUpdated": "2026-04-22T05:47:10.465Z",
+        "gitCommitSha": "cf62a6c02dc03db88da8eb7c61bdb9fd88da6326"
+      }
+    ],
+    "skill-creator@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/skill-creator/cf62a6c02dc0",
+        "version": "cf62a6c02dc0",
+        "installedAt": "2026-04-22T05:47:10.465Z",
+        "lastUpdated": "2026-04-22T05:47:10.465Z",
+        "gitCommitSha": "cf62a6c02dc03db88da8eb7c61bdb9fd88da6326"
+      }
+    ],
+    "frontend-design@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/home/ccota/repositories/gitlab/pdm-db",
+        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/frontend-design/cf62a6c02dc0",
+        "version": "cf62a6c02dc0",
+        "installedAt": "2026-04-22T05:47:10.465Z",
+        "lastUpdated": "2026-07-16T12:23:12.156Z",
+        "gitCommitSha": "cf62a6c02dc03db88da8eb7c61bdb9fd88da6326"
+      }
+    ],
+    "caveman@caveman": [
+      {
+        "scope": "user",
+        "installPath": "/home/ccota/.claude/plugins/cache/caveman/caveman/18e45320a0b1",
+        "version": "18e45320a0b1",
+        "installedAt": "2026-05-18T13:00:56.935Z",
+        "lastUpdated": "2026-05-18T13:00:56.935Z",
+        "gitCommitSha": "18e45320a0b1aecc959a807f8568ee44b3aaa055"
+      }
+    ]
+  }
+}
