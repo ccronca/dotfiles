@@ -1,3 +1,30 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json"
+  "$schema": "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json",
+  "enabled": true,
+  "debug": false,
+  "pruneNotification": "detailed",
+  "compress": {
+    // "range" compresses contiguous spans; "message" (experimental) is more surgical
+    "mode": "range",
+    // "allow" = no prompt before compressing
+    "permission": "allow",
+    // Nudge model to compress above this token count
+    "maxContextLimit": 100000,
+    // No compression reminders below this
+    "minContextLimit": 50000,
+    // Nudge fires every 5th fetch
+    "nudgeFrequency": 5,
+    // "soft" = less aggressive compression prompting
+    "nudgeForce": "soft"
+  },
+  "strategies": {
+    "deduplication": {
+      "enabled": true
+    },
+    "purgeErrors": {
+      "enabled": true,
+      // Prune error inputs after 4 turns
+      "turns": 4
+    }
+  }
 }
