@@ -1,1 +1,17 @@
-/home/ccota/dotfiles/opencode/opencode.jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "google-vertex-anthropic/claude-sonnet-4-6@default",
+  "small_model": "google-vertex-anthropic/claude-haiku-4-5@default",
+  "plugin": [
+    "@angdrew/opencode-hashline-plugin",
+    "@tarquinen/opencode-dcp",
+    "superpowers@git+https://github.com/obra/superpowers.git"
+  ],
+  "agent": {
+    "build": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "plan": { "model": "google-vertex-anthropic/claude-sonnet-4-6@default" },
+    "explore": { "model": "google-vertex-anthropic/claude-haiku-4-5@default" },
+    "general": { "model": "google-vertex-anthropic/claude-sonnet-4-6@default" }
+  },
+  "compaction": { "auto": true, "prune": true }
+}
