@@ -1,0 +1,30 @@
+# OpenCode - Dotfiles .gitignore
+# Allowlist approach: ignore everything by default, then explicitly allow what we want to track
+
+# Ignore everything
+*
+
+# Allow specific config files
+!.gitignore
+!opencode.jsonc
+!dcp.jsonc
+!AGENTS.md
+
+# Allow agents directory and its contents
+!agents/
+!agents/*
+
+# Allow commands directory and its contents
+!commands/
+!commands/*
+
+# Allow plugins directory and its contents
+!plugins/
+!plugins/*
+
+# Allow skills directory and its contents
+!skills/
+!skills/*/
+!skills/*/**
+# But ignore node_modules in skills
+skills/*/node_modules/
