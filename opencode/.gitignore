@@ -22,9 +22,4 @@
 !plugins/
 !plugins/*
 
-# Allow skills directory and its contents
-!skills/
-!skills/*/
-!skills/*/**
-# But ignore node_modules in skills
-skills/*/node_modules/
+# skills/ - NOT tracked; managed by plugins (caveman, superpowers, etc.)
