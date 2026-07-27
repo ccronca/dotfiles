@@ -75,7 +75,8 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='code'
 fi
-KUBECTL_EDITOR='vim'
+
+export KUBE_EDITOR='vim'
 
 python_venv() {
   local VENV_DIR=./.venv
@@ -108,3 +109,6 @@ claude() {
 
 # Added by codebase-memory-mcp install
 export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH=/home/ccota/.opencode/bin:$PATH

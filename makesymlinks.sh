@@ -57,3 +57,7 @@ bash "$dir/setup_claude_config.sh"
 echo ""
 echo "Setting up Gemini configuration..."
 bash "$dir/setup_gemini_config.sh"
+
+echo ""
+echo "Setting up opencode configuration..."
+bash "$dir/setup_opencode_config.sh"

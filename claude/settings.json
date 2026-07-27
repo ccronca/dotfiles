@@ -131,7 +131,7 @@
       "Bash(gh pr create:*)"
     ]
   },
-  "model": "claude-opus-4-6[1m]",
+  "model": "sonnet",
   "enableAllProjectMcpServers": false,
   "hooks": {
     "SessionStart": [
@@ -260,6 +260,15 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/cbm-code-discovery-gate"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
           }
         ]
       }
