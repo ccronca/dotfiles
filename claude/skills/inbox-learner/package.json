@@ -4,6 +4,6 @@
   "description": "Tools for fetching JavaScript-rendered pages",
   "private": true,
   "dependencies": {
-    "puppeteer": "^25.0.0"
+    "puppeteer": "^25.10.0"
   }
 }
