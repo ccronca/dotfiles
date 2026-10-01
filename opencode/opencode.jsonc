@@ -8,7 +8,7 @@
     "superpowers@git+https://github.com/obra/superpowers.git"
   ],
   "agent": {
-    "build": { "model": "google-vertex-anthropic/claude-opus-4-6@default" },
+    "build": { "model": "google-vertex-anthropic/claude-sonnet-4-6@default" },
     "plan": { "model": "google-vertex-anthropic/claude-sonnet-4-6@default" },
     "explore": { "model": "google-vertex-anthropic/claude-haiku-4-5@default" },
     "general": { "model": "google-vertex-anthropic/claude-sonnet-4-6@default" }

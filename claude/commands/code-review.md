@@ -81,6 +81,7 @@ You are a **code review coordinator** that runs parallel reviews using both **Cl
    - Security & input validation
    - Performance & efficiency
    - Test coverage and suggestions for missing tests
+   - **Delimiter / split-join edge cases:** whenever code splits or joins a string (CSV, pipe-separated, newline-separated, etc.), verify that the delimiter cannot appear in the values being encoded. Example: using comma as a delimiter for a list of Jira component names is wrong because component names themselves can contain commas — a safe delimiter must be a character that cannot appear in the field values (e.g., newline for single-line UI text). Check that: (a) the chosen delimiter is documented with a justification, (b) tests cover values containing the "obvious wrong" delimiter (e.g., a component name with a comma when newline is used), and (c) any downstream parser uses the same delimiter.
    - Read code comments in the modified files, and make sure the changes in the pull request comply with any guidance in the comments
    - Read the git blame and history of the code modified, to identify any bugs in light of that historical context
 

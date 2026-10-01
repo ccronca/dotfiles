@@ -24,30 +24,20 @@
     "security-guidance@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/security-guidance/cf62a6c02dc0",
-        "version": "cf62a6c02dc0",
+        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/security-guidance/2.0.8",
+        "version": "2.0.8",
         "installedAt": "2026-04-22T05:47:10.465Z",
-        "lastUpdated": "2026-04-22T05:47:10.465Z",
-        "gitCommitSha": "cf62a6c02dc03db88da8eb7c61bdb9fd88da6326"
-      }
-    ],
-    "context7@claude-plugins-official": [
-      {
-        "scope": "user",
-        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/context7/cf62a6c02dc0",
-        "version": "cf62a6c02dc0",
-        "installedAt": "2026-04-22T05:47:10.465Z",
-        "lastUpdated": "2026-04-22T05:47:10.465Z",
+        "lastUpdated": "2026-10-01T09:56:19.772Z",
         "gitCommitSha": "cf62a6c02dc03db88da8eb7c61bdb9fd88da6326"
       }
     ],
     "skill-creator@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/skill-creator/cf62a6c02dc0",
-        "version": "cf62a6c02dc0",
+        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/skill-creator/ab024cdcfa7c",
+        "version": "ab024cdcfa7c",
         "installedAt": "2026-04-22T05:47:10.465Z",
-        "lastUpdated": "2026-04-22T05:47:10.465Z",
+        "lastUpdated": "2026-10-01T09:56:19.764Z",
         "gitCommitSha": "cf62a6c02dc03db88da8eb7c61bdb9fd88da6326"
       }
     ],
@@ -62,14 +52,23 @@
         "gitCommitSha": "cf62a6c02dc03db88da8eb7c61bdb9fd88da6326"
       }
     ],
-    "caveman@caveman": [
+    "superpowers@claude-plugins-official": [
       {
         "scope": "user",
-        "installPath": "/home/ccota/.claude/plugins/cache/caveman/caveman/18e45320a0b1",
-        "version": "18e45320a0b1",
-        "installedAt": "2026-05-18T13:00:56.935Z",
-        "lastUpdated": "2026-05-18T13:00:56.935Z",
-        "gitCommitSha": "18e45320a0b1aecc959a807f8568ee44b3aaa055"
+        "installPath": "/home/ccota/.claude/plugins/cache/claude-plugins-official/superpowers/6.4.1",
+        "version": "6.4.1",
+        "installedAt": "2026-09-03T07:08:28.416Z",
+        "lastUpdated": "2026-10-01T09:56:21.853Z"
+      }
+    ],
+    "ponytail@ponytail": [
+      {
+        "scope": "user",
+        "installPath": "/home/ccota/.claude/plugins/cache/ponytail/ponytail/4.10.0",
+        "version": "4.10.0",
+        "installedAt": "2026-09-30T13:59:55.422Z",
+        "lastUpdated": "2026-09-30T13:59:55.422Z",
+        "gitCommitSha": "e3ba2aa6f1e6f0bc4d69eb09c9f0d0a93af56156"
       }
     ]
   }

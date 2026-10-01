@@ -99,8 +99,9 @@ The PR/MR description **must** be clear, professional, and **structured with bul
     * **Summary:** A brief explanation of the change.
     * **Motivation:** Why the change is needed.
 * **Optional Sections:**
-    * **Overview of changes:** **Only include this section if it provides meaningful design or architectural insights** that are not obvious from reading the code diff. Do NOT include if it would just summarize what the code already shows. Focus on design decisions, architectural patterns, or non-obvious implications when included.
-    * **Testing steps:** How to verify the change. **Only include this if it is strictly necessary** and not covered by other testing (e.g., unit tests).
+    * **Overview of changes:** Include when the diff alone doesn't convey the full picture. Cover ALL changes at a high level — including ancillary ones (test fixes, linting, doc updates, changes outside the primary scope) — grouped by layer or component. Focus on design decisions and non-obvious implications, not line-by-line descriptions. Skip if the diff is entirely self-explanatory.
+    * **Test plan:** Include a checklist of verification steps when the change has non-trivial behavior to verify. Use `- [x]` for local tests already run and `- [ ]` for pending stage/production steps. Include runnable commands (e.g., `curl` snippets) for stage verification. Omit for trivial changes where CI alone is sufficient.
+    * **Deployment instructions:** Include when the change requires post-deployment manual steps (e.g., dbt full-refresh, data backfill, client notification for breaking changes). Clearly mark each step as mandatory or optional and note when NOT to run a step prematurely (e.g., before the deploy). Omit if the change is self-contained.
 
 ### II. Attribution and Workflow
 
@@ -324,14 +325,6 @@ For work-specific or project-specific configuration, see:
 @~/.claude/CLAUDE.local.md
 
 ---
-
-## Codebase Memory (codebase-memory-mcp)
-
-When this MCP server is available, **prefer graph tools over grep/Explore for structural code questions**.
-Graph queries return precise results in a single tool call (~500 tokens) vs file-by-file exploration (~80K tokens).
-
-Use grep/Glob for text search (string literals, error messages, config values) - the graph doesn't index text content.
-For detailed tool reference, decision matrix, and usage patterns, invoke the `codebase-memory` skill.
 
 @RTK.md
 

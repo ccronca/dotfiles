@@ -1,4 +1,5 @@
 ---
+name: pragma-review
 description: "Fetch and analyse Pragma's AI review for a GitLab MR. Summarises high-value findings and critiques the review quality. Usage: /pragma-review [mr_number]"
 allowed-tools: Bash(glab:*), mcp__pragma__list_reviews, mcp__pragma__get_review
 ---
