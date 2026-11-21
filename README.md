@@ -25,28 +25,46 @@ This script will:
 * Install and update vim plugins (CtrlP, Tagbar)
 * Configure Claude Code settings (symlinks config files while preserving runtime data)
 * Configure Gemini settings (symlinks config files)
+* Configure OpenCode settings (symlinks config files and commands)
 
 ## What's Included
 
 * **Shell configs**: bashrc, zshrc, aliases, bash_profile, bash_logout
-* **Git**: gitconfig, gitignore
+* **Git**: gitconfig, gitconfig-github, gitignore — the default git identity is the GitHub one; `includeIf` picks `gitconfig-github` for `~/repositories/github/` and a work config (kept in a private repo) for `~/repositories/gitlab/`
 * **Vim**: vimrc, ctags configuration
 * **Tmux**: tmux.conf
-* **Claude Code**: Configuration files and custom commands
-* **MCP Servers**: Project-level MCP configuration (.mcp.json) for Obsidian vaults
+* **Claude Code**: settings, commands, skills, agents, hooks
+* **OpenCode**: settings, commands, agent instructions
+* **MCP Servers**: User-level MCP configuration (mcp.json → ~/.mcp.json) for Obsidian vaults
 
 ## Claude Code Configuration
 
 The Claude configuration is handled separately to preserve your local runtime data:
 
 * **Symlinked files**: CLAUDE.md, settings.json, statusline-command.sh, .gitignore
-* **Symlinked directories**: agents/, commands/, hooks/, plugins/
-* **Local files preserved**: CLAUDE.local.md, history.jsonl, debug/, file-history/, session-env/
+* **Symlinked directories**: agents/, commands/, hooks/, skills/
+* **Local files preserved**: CLAUDE.local.md, history.jsonl, debug/, file-history/, session-env/, plugins/ (runtime state, gitignored)
 
 To manually update Claude configuration only:
 
 ```bash
 ./setup_claude_config.sh
+```
+
+## OpenCode Configuration
+
+The OpenCode configuration is handled by `setup_opencode_config.sh`:
+
+* **Symlinked files**: opencode.jsonc, dcp.jsonc, AGENTS.md
+* **Symlinked directories**: agents/, plugins/, skills/
+* **Commands**: `commands/` in `~/.config/opencode` is a real directory of per-file symlinks, so commands from a private dotfiles repo can live alongside the public ones
+
+The public config intentionally does not pin models or providers — model selection stays in your private, machine-local config.
+
+To manually update OpenCode configuration only:
+
+```bash
+./setup_opencode_config.sh
 ```
 
 ## Gemini Configuration
@@ -63,7 +81,7 @@ To manually update Gemini configuration only:
 
 ## MCP Server Configuration
 
-The repository includes project-level MCP configuration in `.mcp.json` for Obsidian vault integration.
+The repository includes user-level MCP configuration in `mcp.json` (symlinked to `~/.mcp.json`) for Obsidian vault integration.
 
 **Note:** Due to a bug in mcp-obsidian (see [PR #89](https://github.com/MarkusPfundstein/mcp-obsidian/pull/89)), only one vault can be configured at a time.
 
@@ -84,7 +102,7 @@ To use the MCP server:
    source .env
    ```
 
-The MCP server will be available when Claude Code is run from this directory.
+The MCP server will be available when Claude Code runs.
 
 ## Google Calendar Integration
 
