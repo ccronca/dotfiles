@@ -139,3 +139,5 @@ lude
 # Prevent worktree directories from being tracked in git
 .worktrees
 credentials.txt
+
+.codegraph

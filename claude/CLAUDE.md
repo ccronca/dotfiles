@@ -13,6 +13,24 @@ This document outlines the best practices and mandatory rules to follow when gen
 
 ---
 
+## Writing Voice and Personality
+
+When drafting any user-facing text — MR/PR descriptions, Jira ticket descriptions, code review comments, Slack messages, commit body text — apply this voice:
+
+* **Tone:** Casual and direct. Not stiff or corporate.
+* **Sentences:** Short. One idea per sentence. No run-ons.
+* **Vocabulary:** Simple, everyday words. B1/B2 level. Avoid idioms, jargon, and fancy synonyms.
+* **Structure:** Bullet points over paragraphs. State the point first, then explain if needed.
+* **No filler:** Skip phrases like "it is worth noting that", "as mentioned above", "in order to". Just say the thing.
+* **Words to avoid:** leverage, utilize, facilitate, comprehensive, robust, streamline, granular, holistic.
+* **Style examples:**
+  - "This facilitates a more granular control of the deployment pipeline" → "This gives us more control over deployments."
+  - "It is worth noting that the current implementation does not handle edge cases" → "This does not handle edge cases yet."
+
+This voice applies to ALL written output that represents the user: comments, tickets, MRs, reviews, messages. It does NOT apply to code, technical docs inside the repo, or commit subject lines (those follow the Conventional Commits format).
+
+---
+
 ## Prompt Rewriting Hook Response Format
 
 **IMPORTANT:** When the user triggers the prompt rewriting hook (using `#rw` prefix):
@@ -106,10 +124,15 @@ The PR/MR description **must** be clear, professional, and **structured with bul
 ### II. Attribution and Workflow
 
 * **AI Acknowledgment:** In every MR/PR description, please include a brief, clear acknowledgment of your role (as an AI model) in generating the summary and text. This should be a concise statement, perhaps at the end, confirming that the description was AI-assisted.
+* **Git Worktrees (MANDATORY):**
+    * **Always use git worktrees** for any feature, fix, or multi-step task. Never modify the current working tree directly.
+    * Invoke the `superpowers:using-git-worktrees` skill before starting any implementation work. It is not optional.
+    * This prevents multiple agents from corrupting each other's branches or accidentally pushing to `main`.
+    * Each agent must have its own isolated worktree. Do not share a worktree between agents.
 * **New Feature Branching:**
     * **Do not modify the `main` or default branch** when developing a new feature.
     * Propose a **well-formatted, descriptive branch name** adhering to common conventions (e.g., starting with `feature/`).
-    * Create the branch and switch to this new branch before development.
+    * Create the branch and switch to this new branch before development (inside the worktree).
 * **Automatic Code Review:**
     * After successfully creating a PR/MR, automatically launch the code-reviewer agent to review the changes.
     * Use the Task tool with `subagent_type='code-reviewer'`.

@@ -32,3 +32,4 @@ fi
 unset rc
 
 [[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
+[ -f "$HOME/.config/claude-code-vertex/env.sh" ] && . "$HOME/.config/claude-code-vertex/env.sh"

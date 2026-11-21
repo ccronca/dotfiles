@@ -111,4 +111,5 @@ claude() {
 export PATH="$HOME/.local/bin:$PATH"
 
 # opencode
-export PATH=/home/ccota/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
+[ -f "$HOME/.config/claude-code-vertex/env.sh" ] && . "$HOME/.config/claude-code-vertex/env.sh"
