@@ -100,7 +100,7 @@ Generate a Jira work journal entry summarizing tickets worked on during a specif
 
 7. **Add appropriate tags:**
    Analyze the tickets and their content to add relevant tags at the end of the entry:
-   - Add `#workstream/[project-name]` based on the Jira project (e.g., #workstream/pdm for PDM project tickets)
+   - Add `#workstream/[project-name]` based on the Jira project (e.g., #workstream/my-project for project tickets)
    - Add `#jira` for all Jira journal entries
    - Add `#opensource` if work involves open source contributions
    - Add technology-specific tags based on ticket content (e.g., #dbt, #python, #postgresql)
@@ -108,7 +108,7 @@ Generate a Jira work journal entry summarizing tickets worked on during a specif
 
    Format tags at the end of the entry like:
    ```
-   Tags: #jira #workstream/pdm #dbt #bugfix
+   Tags: #jira #workstream/my-project #dbt #bugfix
    ```
 
 **Important:**

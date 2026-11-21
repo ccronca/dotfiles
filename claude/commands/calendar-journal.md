@@ -96,7 +96,7 @@ Generate a Google Calendar journal entry summarizing meetings for a specific tim
    Analyze the meetings and meeting patterns to add relevant tags:
    - `#calendar` for all calendar journal entries
    - `#meetings` for meeting summaries
-   - `#workstream/[project]` if meeting titles indicate specific projects (e.g., #workstream/pdm if multiple PDM-related meetings)
+   - `#workstream/[project]` if meeting titles indicate specific projects (e.g., #workstream/my-project if multiple project-related meetings)
    - Meeting density tags:
      - `#heavy-meeting-day` if >50% of work hours in meetings
      - `#focus-day` if <25% of work hours in meetings

@@ -41,7 +41,7 @@ Run all six scans. Report **every match** found.
 **3a. Internal hostnames and domains**
 
 Use Grep with this pattern across `.` (project root):
-- Pattern: `(?i)\.(internal|corp|company|lan)\b|gitlab\.cee\.|\.redhat\.com`
+- Pattern: `(?i)\.(internal|corp|company|lan)\b|gitlab\.(cee|corp)\.`
 
 **3b. Real username**
 

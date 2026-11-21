@@ -29,6 +29,10 @@ hooks/__pycache__/
 !plugins/*
 # But ignore plugin cache files
 plugins/*-cache.json
+# Machine-local plugin state (never track)
+plugins/installed_plugins.json
+plugins/known_marketplaces.json
+plugins/blocklist.json
 
 # Allow skills directory and its contents
 !skills/

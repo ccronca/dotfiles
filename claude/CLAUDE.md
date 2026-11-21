@@ -362,8 +362,8 @@ CLI: `jira` (go-jira, config: `~/.config/.jira/.config.yml`)
 
 ```bash
 jira issue list                          # list issues
-jira issue view SPOG-271                 # view ticket
-jira issue list -p SPOG                  # project issues
+jira issue view PROJ-271                 # view ticket
+jira issue list -p PROJ                  # project issues
 jira issue list --assignee $(jira me)    # my issues
 jira sprint list --board <id>            # sprint list
 jira epic list                           # epics

@@ -29,7 +29,7 @@ Fetch and analyse Pragma's AI-generated review for a GitLab MR.
 
 3. **Determine the repository name:**
    - Run `glab mr view <MR_NUMBER>` (reuse output from step 2) and parse the `Project:` or
-     `Web URL` field to extract the repository name (e.g. `pdm-db`).
+     `Web URL` field to extract the repository name (e.g. `my-repo`).
    - Use just the short repository name (last path segment), not the full group path.
 
 4. **Find the most recent Pragma review for this MR:**

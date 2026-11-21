@@ -49,7 +49,7 @@ Return a JSON object with the following structure that will be used to create th
   "focus": "Main focus/theme of the session",
   "files_modified": ["file1.py", "file2.js"],
   "git_operations": ["commit", "push", "pr_create"],
-  "jira_tickets": ["JIRA-123"],
+  "jira_tickets": ["PROJECT-123"],
   "tools_used": ["Bash", "Edit", "Read"],
   "working_directory": "/path/to/project"
 }

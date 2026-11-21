@@ -91,7 +91,7 @@ Generate a standup summary based on yesterday's development and Jira journal ent
      - Add `#workstream/[project-name]` based on tickets/work mentioned
      - Add `#code-review` if MR reviews are included in the standup
      - Add technology tags based on work (e.g., `#dbt`, `#python`, `#postgresql`)
-   - Format tags like: `Tags: #standup #meeting #workstream/pdm #dbt #code-review`
+   - Format tags like: `Tags: #standup #meeting #workstream/my-project #dbt #code-review`
    - Display the formatted standup summary to the user
 
 **Example output:**
@@ -100,20 +100,20 @@ Generate a standup summary based on yesterday's development and Jira journal ent
 # Standup Update - 2025-12-02
 
 **What did I accomplish yesterday?**
-- Completed dbt model refactoring for mart_finding_product_details
+- Completed dbt model refactoring for mart_customer_order_details
 - Fixed unit tests for bridge table mappings with lifecycle columns
-- Reviewed MR !156 - Add data quality checks for finding ingestion (Author: jsmith)
-- Updated PDM-1234 status to Review and added implementation notes
+- Reviewed MR !42 - Add data quality checks for data ingestion (Author: jsmith)
+- Updated PROJECT-123 status to Review and added implementation notes
 
 **What will I accomplish today?**
 - Address code review feedback on the dbt model MR
 - Create unit tests for the new data quality checks
-- Start work on PDM-1235 for ingestion pipeline optimization
+- Start work on PROJECT-124 for ingestion pipeline optimization
 
 **Do I have any blockers?**
 - None
 
-Tags: #standup #meeting #workstream/pdm #dbt #code-review
+Tags: #standup #meeting #workstream/my-project #dbt #code-review
 ```
 
 **Important:**
