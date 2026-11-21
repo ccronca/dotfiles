@@ -1,5 +1,9 @@
 [init]
   	defaultBranch = main
+[user]
+    name = Camilo
+    email = 1499184+ccronca@users.noreply.github.com
+    signingkey = 22DB094B5BBE052E
 [color]
 	ui = auto
 [commit]
