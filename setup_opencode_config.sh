@@ -12,7 +12,6 @@ CONFIG_FILES=(
 
 CONFIG_DIRS=(
     "agents"
-    "commands"
     "plugins"
     "skills"
 )
@@ -38,6 +37,29 @@ for file in "${CONFIG_FILES[@]}"; do
     else
         echo "Warning: $SOURCE not found, skipping"
     fi
+done
+
+# commands/ is a real directory of per-file symlinks so commands from the
+# private dotfiles repo (if installed) can live alongside the public ones.
+COMMANDS_DIR="$OPENCODE_DIR/commands"
+mkdir -p "$COMMANDS_DIR"
+
+if [ -L "$COMMANDS_DIR" ]; then
+    rm "$COMMANDS_DIR"
+fi
+
+for cmd_file in "$DOTFILES_OPENCODE/commands"/*.md "$DOTFILES_OPENCODE/commands"/.internal/*.md; do
+    [ -f "$cmd_file" ] || continue
+    name="$(basename "$cmd_file")"
+    sub=""
+    case "$cmd_file" in
+        */.internal/*) sub=".internal/" ;;
+    esac
+    target="$COMMANDS_DIR/$sub$name"
+    mkdir -p "$COMMANDS_DIR/$sub"
+    [ -L "$target" ] && rm "$target"
+    echo "Symlinking command $sub$name"
+    ln -s "$cmd_file" "$target"
 done
 
 for dir in "${CONFIG_DIRS[@]}"; do
