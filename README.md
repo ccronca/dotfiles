@@ -56,8 +56,8 @@ To manually update Claude configuration only:
 The OpenCode configuration is handled by `setup_opencode_config.sh`:
 
 * **Symlinked files**: opencode.jsonc, dcp.jsonc, AGENTS.md
-* **Symlinked directories**: agents/, plugins/, skills/
-* **Commands**: `commands/` in `~/.config/opencode` is a real directory of per-file symlinks, so commands from a private dotfiles repo can live alongside the public ones
+* **Symlinked directories**: agents/, skills/
+* **Commands and plugins**: `commands/` and `plugins/` in `~/.config/opencode` are real directories of per-file symlinks, so entries from a private dotfiles repo can live alongside the public ones
 
 The public config intentionally does not pin models or providers — model selection stays in your private, machine-local config.
 
@@ -65,6 +65,17 @@ To manually update OpenCode configuration only:
 
 ```bash
 ./setup_opencode_config.sh
+```
+
+## RTK Integration
+
+`opencode/plugins/rtk.ts` rewrites common shell commands (git, ls, grep, test runners) through [rtk](https://github.com/rtk-ai/rtk) to cut token usage. `setup_opencode_config.sh` installs the rtk binary automatically if it is missing.
+
+Manual install:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+# or: brew install rtk
 ```
 
 ## Gemini Configuration

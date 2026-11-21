@@ -6,6 +6,9 @@ const run = promisify(execFile)
 
 // RTK OpenCode plugin — rewrites shell commands to use rtk for token savings.
 // Requires: rtk >= 0.23.0 in PATH.
+// Install rtk: https://github.com/rtk-ai/rtk
+//   curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+//   (or: brew install rtk)
 //
 // This is a thin delegating plugin: all rewrite logic lives in `rtk rewrite`,
 // which is the single source of truth (src/discover/registry.rs).

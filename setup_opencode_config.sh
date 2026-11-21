@@ -12,7 +12,6 @@ CONFIG_FILES=(
 
 CONFIG_DIRS=(
     "agents"
-    "plugins"
     "skills"
 )
 
@@ -60,6 +59,30 @@ for cmd_file in "$DOTFILES_OPENCODE/commands"/*.md "$DOTFILES_OPENCODE/commands"
     [ -L "$target" ] && rm "$target"
     echo "Symlinking command $sub$name"
     ln -s "$cmd_file" "$target"
+done
+
+# rtk powers the token-saving shell-command rewrites in plugins/rtk.ts.
+# https://github.com/rtk-ai/rtk
+if ! command -v rtk >/dev/null 2>&1; then
+    echo "rtk not found — installing it from https://github.com/rtk-ai/rtk"
+    curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh ||
+        echo "Warning: rtk install failed — install it manually: https://github.com/rtk-ai/rtk"
+fi
+
+# plugins/ is a real directory of per-file symlinks so plugins from the
+# private dotfiles repo (if installed) can live alongside the public ones.
+PLUGINS_DIR="$OPENCODE_DIR/plugins"
+if [ -L "$PLUGINS_DIR" ]; then
+    rm "$PLUGINS_DIR"
+fi
+mkdir -p "$PLUGINS_DIR"
+
+for plugin_file in "$DOTFILES_OPENCODE/plugins"/*.ts "$DOTFILES_OPENCODE/plugins"/*.js; do
+    [ -f "$plugin_file" ] || continue
+    target="$PLUGINS_DIR/$(basename "$plugin_file")"
+    [ -L "$target" ] && rm "$target"
+    echo "Symlinking plugin $(basename "$plugin_file")"
+    ln -s "$plugin_file" "$target"
 done
 
 for dir in "${CONFIG_DIRS[@]}"; do
