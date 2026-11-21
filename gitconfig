@@ -34,3 +34,5 @@
 	untracked = cyan
 [includeIf "gitdir:~/repositories/github/"]
     path = ~/.gitconfig-github
+[includeIf "gitdir:~/repositories/gitlab/"]
+    path = ~/.gitconfig-work

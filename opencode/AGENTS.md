@@ -1,3 +1,21 @@
+## Writing Voice and Personality
+
+When drafting any user-facing text — MR/PR descriptions, Jira ticket descriptions, code review comments, Slack messages, commit body text — apply this voice:
+
+* **Tone:** Casual and direct. Not stiff or corporate.
+* **Sentences:** Short. One idea per sentence. No run-ons.
+* **Vocabulary:** Simple, everyday words. B1/B2 level. Avoid idioms, jargon, and fancy synonyms.
+* **Structure:** Bullet points over paragraphs. State the point first, then explain if needed.
+* **No filler:** Skip phrases like "it is worth noting that", "as mentioned above", "in order to". Just say the thing.
+* **Words to avoid:** leverage, utilize, facilitate, comprehensive, robust, streamline, granular, holistic.
+* **Style examples:**
+  - "This facilitates a more granular control of the deployment pipeline" → "This gives us more control over deployments."
+  - "It is worth noting that the current implementation does not handle edge cases" → "This does not handle edge cases yet."
+
+This voice applies to ALL written output that represents the user: comments, tickets, MRs, reviews, messages. It does NOT apply to code, technical docs inside the repo, or commit subject lines (those follow the Conventional Commits format).
+
+---
+
 ## External Service CLIs
 
 Use CLIs for Jira, GitHub, GitLab interactions. Never ask user to fetch ticket/PR/issue info manually.
@@ -7,8 +25,8 @@ CLI: `jira` (go-jira, config: `~/.config/.jira/.config.yml`)
 
 ```bash
 jira issue list                          # list issues
-jira issue view SPOG-271                 # view ticket
-jira issue list -p SPOG                  # project issues
+jira issue view PROJ-123                 # view ticket
+jira issue list -p PROJ                  # project issues
 jira issue list --assignee $(jira me)    # my issues
 jira sprint list --board <id>            # sprint list
 jira epic list                           # epics

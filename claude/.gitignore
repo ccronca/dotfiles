@@ -36,3 +36,6 @@ plugins/*-cache.json
 !skills/*/**
 # But ignore node_modules in skills
 skills/*/node_modules/
+
+# Claude plugin sweep marker
+.last_inuse_sweep
