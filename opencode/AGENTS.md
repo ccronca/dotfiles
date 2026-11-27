@@ -59,6 +59,20 @@ glab ci status                           # pipeline status
 glab ci view                             # pipeline details
 ```
 
+### GitLab MR comment mechanics (glab api)
+
+- Anchored review comment: `POST projects/<id>/merge_requests/<iid>/discussions`
+  with a JSON body: `{"body": "...", "position": {position_type: "text", base_sha,
+  start_sha, head_sha, old_path, new_path, new_line}}`. Get the shas from the MR's
+  `diff_refs`. Verify the returned note has `type: "DiffNote"`.
+- Gotchas on gitlab.cee.redhat.com: form-field position keys (`-f position_type=...`)
+  and the `/notes` endpoint both silently drop the position — you get an unanchored
+  general comment. JSON body on `/discussions` is the only shape that anchors.
+- Reply in a thread: `POST .../discussions/<discussion_id>/notes -f body="..."`.
+  (`/comments` 404s.)
+- Reopen a resolved thread: `PUT .../discussions/<discussion_id>?resolved=false`.
+- Delete a stray note: `DELETE .../notes/<note_id>`.
+
 <!-- codebase-memory-mcp:start -->
 # Codebase Knowledge Graph (codebase-memory-mcp)
 
