@@ -78,6 +78,19 @@ curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/instal
 # or: brew install rtk
 ```
 
+## systemd user services
+
+`setup_systemd_config.sh` symlinks units from `systemd/user/` into `~/.config/systemd/user/`, helper scripts into `~/.local/bin/`, runs `systemctl --user daemon-reload` and enables the units. Real files already present in `~/.config/systemd/user/` are left untouched.
+
+**dotfiles-secrets.service** decrypts `~/.config/creds.d/*.cred` (TPM2-encrypted via `systemd-creds`) into a tmpfs cache (`${XDG_RUNTIME_DIR}/dotfiles-secrets.env`) at login; `zshrc`/`bashrc` source that cache and delegate rebuilds back to the service.
+
+Add a secret:
+
+```bash
+printf '%s' 'the-token' | systemd-creds encrypt --user - ~/.config/creds.d/NEWVAR.cred
+systemctl --user restart dotfiles-secrets.service   # or just open a new shell
+```
+
 ## Gemini Configuration
 
 The Gemini configuration is handled separately:

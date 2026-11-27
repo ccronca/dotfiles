@@ -61,3 +61,7 @@ bash "$dir/setup_gemini_config.sh"
 echo ""
 echo "Setting up opencode configuration..."
 bash "$dir/setup_opencode_config.sh"
+
+echo ""
+echo "Setting up systemd user services..."
+bash "$dir/setup_systemd_config.sh"
