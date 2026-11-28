@@ -8,10 +8,10 @@
     "mode": "range",
     // "allow" = no prompt before compressing
     "permission": "allow",
-    // Nudge model to compress above this token count
-    "maxContextLimit": 100000,
-    // No compression reminders below this
-    "minContextLimit": 50000,
+    // Nudge model to compress above this (85% of the 1M GLM-5.3 window)
+    "maxContextLimit": "85%",
+    // No compression reminders below this (60% of the 1M window)
+    "minContextLimit": "60%",
     // Nudge fires every 5th fetch
     "nudgeFrequency": 5,
     // "soft" = less aggressive compression prompting
