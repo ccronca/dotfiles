@@ -82,7 +82,7 @@ curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/instal
 
 `setup_systemd_config.sh` symlinks units from `systemd/user/` into `~/.config/systemd/user/`, helper scripts into `~/.local/bin/`, runs `systemctl --user daemon-reload` and enables the units. Real files already present in `~/.config/systemd/user/` are left untouched.
 
-**dotfiles-secrets.service** decrypts `~/.config/creds.d/*.cred` (TPM2-encrypted via `systemd-creds`) into a tmpfs cache (`${XDG_RUNTIME_DIR}/dotfiles-secrets.env`) at login; `zshrc`/`bashrc` source that cache and delegate rebuilds back to the service.
+**dotfiles-secrets.service** decrypts `~/.config/creds.d/*.cred` (TPM2-encrypted via `systemd-creds`) into a tmpfs cache (`${XDG_RUNTIME_DIR}/dotfiles-secrets.env`) at login; `zshrc`/`bashrc` source that cache and delegate rebuilds back to the service. File-based credentials work too: `~/.config/creds.d/files/*.cred` are decrypted to `${XDG_RUNTIME_DIR}/dotfiles-secrets-files/` — used for the AWS credentials INI, referenced by `AWS_SHARED_CREDENTIALS_FILE` in `~/.env`.
 
 Add a secret:
 

@@ -20,7 +20,7 @@ fi
 # decrypts itself.
 _creds_cache="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/dotfiles-secrets.env"
 _creds_stamp="$_creds_cache.stamp"
-_creds_now=$(find "$HOME/.config/creds.d" -maxdepth 1 -name '*.cred' -printf '%f %s %T@\n' 2>/dev/null | sort | md5sum | cut -d' ' -f1)
+_creds_now=$(find "$HOME/.config/creds.d" -maxdepth 2 -name '*.cred' -printf '%P %s %T@\n' 2>/dev/null | sort | md5sum | cut -d' ' -f1)
 if [ -s "$_creds_cache" ] && [ "$(cat "$_creds_stamp" 2>/dev/null)" = "$_creds_now" ]; then
     . "$_creds_cache"
 else
