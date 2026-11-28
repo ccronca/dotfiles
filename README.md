@@ -91,6 +91,8 @@ printf '%s' 'the-token' | systemd-creds encrypt --user - ~/.config/creds.d/NEWVA
 systemctl --user restart dotfiles-secrets.service   # or just open a new shell
 ```
 
+**rotate-gitlab-token.timer** rotates the GitLab personal access token every 5 days (re-encrypting it into `creds.d` and refreshing the cache). On failure the script sends a critical desktop notification and the unit retries every 30 minutes, bounded to 8 attempts per 6h window.
+
 ## Gemini Configuration
 
 The Gemini configuration is handled separately:

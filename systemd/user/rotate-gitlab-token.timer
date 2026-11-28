@@ -1,0 +1,9 @@
+[Unit]
+Description=Rotate the GitLab personal access token every 5 days
+
+[Timer]
+OnUnitActiveSec=5d
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=Rotate the GitLab personal access token
+Documentation=https://docs.gitlab.com/ee/api/personal_access_tokens.html
+# Retries re-send the desktop alert; the start limit bounds the spam.
+StartLimitIntervalSec=6h
+StartLimitBurst=8
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/.env
+ExecStart=%h/.local/bin/rotate-gitlab-token.sh
+Restart=on-failure
+RestartSec=30min

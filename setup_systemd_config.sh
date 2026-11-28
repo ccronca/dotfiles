@@ -11,7 +11,7 @@ mkdir -p "$SYSTEMD_USER_DIR" "$LOCAL_BIN"
 
 # Symlink every unit from the repo. Real files in ~/.config/systemd/user/
 # (e.g. ai-rewriter.service) belong to someone else — skip, never clobber.
-for unit in "$DOTFILES_SYSTEMD"/*.service; do
+for unit in "$DOTFILES_SYSTEMD"/*.service "$DOTFILES_SYSTEMD"/*.timer; do
     [ -f "$unit" ] || continue
     name="$(basename "$unit")"
     target="$SYSTEMD_USER_DIR/$name"
@@ -44,10 +44,15 @@ done
 
 systemctl --user daemon-reload
 
-for unit in "$DOTFILES_SYSTEMD"/*.service; do
+for unit in "$DOTFILES_SYSTEMD"/*.service "$DOTFILES_SYSTEMD"/*.timer; do
     [ -f "$unit" ] || continue
     name="$(basename "$unit")"
     [ -e "$SYSTEMD_USER_DIR/$name" ] || continue
+    # Services without an [Install] section are timer-triggered only —
+    # enabling them directly would run them at every boot.
+    if [ "${name##*.}" = service ] && ! grep -q '^\[Install\]' "$unit"; then
+        continue
+    fi
     echo "Enabling $name"
     systemctl --user enable --now "$name"
 done
